@@ -4,96 +4,261 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Drake Equation & Its Variants</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #ffffff; --bg2: #f7f6f3; --bg3: #f0ede8;
-    --text: #1a1a18; --text2: #5a5a56; --text3: #9a9a94;
-    --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.2);
-    --serif: Georgia, 'Times New Roman', serif;
-    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --purple: #4c0099;
+    --green: #009969;
+    --bg: #ffffff;
+    --bg2: #f7f6f3;
+    --bg3: #ede9f7;
+    --text: #1a1a18;
+    --text2: #5a5a56;
+    --text3: #9a9a94;
+    --border: rgba(0,0,0,0.1);
+    --border2: rgba(0,0,0,0.18);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     --radius: 8px;
+    --max: 1100px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a1a18; --bg2: #242420; --bg3: #2e2e2a;
-      --text: #e8e6e0; --text2: #a0a09a; --text3: #606058;
-      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.2);
+      --bg: #0f0a1a; --bg2: #1a1228; --bg3: #241a38;
+      --text: #e8e4f0; --text2: #a89ec0; --text3: #6a6080;
+      --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.15);
     }
   }
   body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
-  header { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 2rem; border-bottom: 0.5px solid var(--border); }
-  header h1 { font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: normal; letter-spacing: -0.01em; margin-bottom: 0.75rem; }
-  header p { font-size: 0.9rem; color: var(--text2); max-width: 560px; line-height: 1.7; }
-  main { max-width: 780px; margin: 0 auto; padding: 1.5rem; }
-  .tabs { display: flex; overflow-x: auto; gap: 0; border-bottom: 0.5px solid var(--border); margin-bottom: 1.75rem; scrollbar-width: none; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #0a0015 0%, #1a0040 50%, #0d0030 100%);
+    padding: 3.5rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 55% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 90% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 62% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 8% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 97% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 3% 10%, rgba(255,255,255,0.6) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .header-inner { max-width: var(--max); margin: 0 auto; position: relative; }
+  header h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--purple);
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+    text-shadow: 0 0 60px rgba(76,0,153,0.5), 0 0 120px rgba(76,0,153,0.2);
+  }
+  header p {
+    font-size: 0.9rem;
+    color: rgba(220,210,240,0.8);
+    max-width: 580px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ── MAIN ── */
+  main { max-width: var(--max); margin: 0 auto; padding: 1.75rem 2rem; }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    border-bottom: 0.5px solid var(--border);
+    margin-bottom: 2rem;
+    scrollbar-width: none;
+  }
   .tabs::-webkit-scrollbar { display: none; }
-  .tb { padding: 8px 13px; font-size: 11.5px; border: none; background: transparent; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; margin-bottom: -1px; flex-shrink: 0; font-family: var(--sans); transition: color 0.15s; }
-  .tb.on { color: var(--text); font-weight: 600; border-bottom-color: var(--text); }
+  .tb {
+    padding: 9px 15px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--sans);
+    border: none;
+    background: transparent;
+    color: var(--text2);
+    cursor: pointer;
+    border-bottom: 2.5px solid transparent;
+    white-space: nowrap;
+    margin-bottom: -1px;
+    flex-shrink: 0;
+    letter-spacing: 0.01em;
+    transition: color 0.15s;
+  }
+  .tb.on { border-bottom-color: var(--purple); color: var(--purple); }
+  .tb.on.green-tab { border-bottom-color: var(--green); color: var(--green); }
   .tb:hover:not(.on) { color: var(--text); background: var(--bg2); }
   .pnl { display: none; } .pnl.on { display: block; }
 
-  /* Guess tab */
-  .guess-intro { font-size: 13px; color: var(--text2); line-height: 1.7; padding: 11px 15px; border-left: 2px solid var(--border2); margin-bottom: 1.75rem; font-family: var(--serif); }
-  .guess-formula { font-size: 17px; font-weight: 600; margin-bottom: 1.75rem; color: var(--text); line-height: 1.8; letter-spacing: 0.01em; }
-  .guess-result-row { display: flex; align-items: baseline; gap: 12px; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.75rem; }
-  .guess-n { font-size: 44px; font-weight: 300; color: var(--text); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+  /* ── FORMULA ── */
+  .eq-f {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 5px;
+    color: var(--purple);
+    line-height: 1.6;
+    font-family: var(--serif);
+    font-style: italic;
+  }
+  .eq-c { font-size: 11px; color: var(--text3); margin: 0 0 0; font-style: italic; }
+  .eq-rule { border: none; border-top: 1.5px solid var(--purple); opacity: 0.2; margin: 12px 0 14px; }
+  .eq-note {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.75;
+    padding: 12px 16px;
+    border-left: 2.5px solid var(--purple);
+    margin-bottom: 1.75rem;
+    font-family: var(--serif);
+    opacity: 0.9;
+  }
+
+  /* ── N RESULT ── */
+  .nr {
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--purple);
+    line-height: 1;
+    margin: 0 0 5px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+    font-family: var(--serif);
+  }
+  .nd { font-size: 12px; color: var(--text2); padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.25rem; }
+
+  /* ── PRESETS ── */
+  .ps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.75rem; }
+  .pb {
+    font-size: 11px;
+    padding: 4px 12px;
+    border: 0.5px solid var(--border2);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text2);
+    cursor: pointer;
+    font-family: var(--sans);
+    font-weight: 500;
+    transition: all 0.12s;
+  }
+  .pb:hover, .pb.on { background: var(--bg3); color: var(--purple); border-color: var(--purple); font-weight: 600; }
+
+  /* ── TERMS (sliders) ── */
+  .trm { margin-bottom: 1.35rem; }
+  .th2 { display: flex; align-items: baseline; gap: 9px; margin-bottom: 2px; }
+  .tsym { font-size: 15px; font-weight: 700; min-width: 44px; color: var(--purple); font-family: var(--serif); font-style: italic; }
+  .tname { font-size: 12.5px; color: var(--text2); font-weight: 500; }
+  .tdesc { font-size: 11.5px; color: var(--text3); font-style: italic; margin-bottom: 6px; line-height: 1.5; }
+  .trow2 { display: flex; align-items: center; gap: 8px; }
+  .tedge { font-size: 10px; color: var(--text3); min-width: 30px; }
+  .tedge.r { text-align: right; }
+  .tval { font-size: 12px; font-weight: 600; min-width: 76px; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
+  input[type=range] {
+    flex: 1; -webkit-appearance: none;
+    height: 4px; background: var(--bg3);
+    border-radius: 2px; outline: none; cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 16px; height: 16px;
+    border-radius: 50%; background: var(--purple); cursor: pointer; border: none;
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 16px; height: 16px;
+    border-radius: 50%; background: var(--purple); cursor: pointer; border: none;
+  }
+
+  /* ── MACCONE / SANDBERG ── */
+  .rng3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 4px 0 14px; }
+  .rc { background: var(--bg2); border-radius: var(--radius); padding: 10px; text-align: center; border: 0.5px solid var(--border); }
+  .rl { font-size: 10px; color: var(--text3); margin-bottom: 3px; }
+  .rv { font-size: 14px; font-weight: 600; color: var(--purple); }
+  .pbar { height: 4px; background: var(--bg3); border-radius: 2px; margin: 8px 0 4px; overflow: hidden; }
+  .pfill { height: 100%; border-radius: 2px; background: var(--purple); transition: width 0.15s; }
+  .ptxt { font-size: 12px; color: var(--text2); }
+
+  /* ── GUESS TAB ── */
+  .guess-intro { font-size: 13px; color: var(--text2); line-height: 1.75; padding: 12px 16px; border-left: 2.5px solid var(--green); margin-bottom: 1.75rem; font-family: var(--serif); }
+  .guess-formula { font-size: 20px; font-weight: 700; margin-bottom: 1.75rem; color: var(--purple); line-height: 1.8; font-family: var(--serif); font-style: italic; }
+  .guess-result-row { display: flex; align-items: baseline; gap: 14px; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.25rem; }
+  .guess-n { font-size: 52px; font-weight: 300; color: var(--green); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1; font-family: var(--serif); }
   .guess-n-label { font-size: 12px; color: var(--text2); }
   .guess-table { width: 100%; border-collapse: collapse; }
   .guess-table tr { border-bottom: 0.5px solid var(--border); }
   .guess-table tr:last-child { border-bottom: none; }
   .guess-table td { padding: 12px 0; vertical-align: top; }
-  .gt-sym { font-size: 15px; font-weight: 600; color: var(--text); width: 48px; padding-top: 13px; }
-  .gt-body { padding: 0 12px; }
-  .gt-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-  .gt-def { font-size: 12px; color: var(--text2); line-height: 1.6; font-family: var(--serif); font-style: italic; }
+  .gt-sym { font-size: 16px; font-weight: 700; color: var(--purple); width: 50px; padding-top: 13px; font-family: var(--serif); font-style: italic; }
+  .gt-body { padding: 0 14px; }
+  .gt-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .gt-def { font-size: 12px; color: var(--text2); line-height: 1.65; font-family: var(--serif); font-style: italic; }
   .gt-input-wrap { width: 110px; padding-top: 10px; }
   .gt-input {
     width: 100%; padding: 6px 10px; font-size: 13px; font-family: var(--sans);
     border: 0.5px solid var(--border2); border-radius: var(--radius);
     background: var(--bg2); color: var(--text); outline: none;
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: tabular-nums; transition: border-color 0.15s;
   }
-  .gt-input:focus { border-color: var(--text2); background: var(--bg); }
+  .gt-input:focus { border-color: var(--green); }
   .gt-hint { font-size: 10px; color: var(--text3); margin-top: 3px; text-align: center; }
-  .guess-cta { margin-top: 1.75rem; font-size: 12.5px; color: var(--text3); font-style: italic; }
+  .guess-cta { margin-top: 1.75rem; font-size: 12.5px; color: var(--text3); font-style: italic; font-family: var(--serif); }
 
-  /* Explorer tabs */
-  .eq-f { font-size: 16px; font-weight: 600; margin: 0 0 4px; color: var(--text); line-height: 1.6; }
-  .eq-c { font-size: 11px; color: var(--text3); margin: 0 0 12px; font-style: italic; }
-  .eq-note { font-size: 13px; color: var(--text2); line-height: 1.7; padding: 11px 15px; border-left: 2px solid var(--border2); margin-bottom: 1.75rem; font-family: var(--serif); }
-  .nr { font-size: 44px; font-weight: 300; color: var(--text); line-height: 1; margin: 0 0 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
-  .nd { font-size: 12px; color: var(--text2); padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.25rem; }
-  .ps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.75rem; }
-  .pb { font-size: 11px; padding: 4px 11px; border: 0.5px solid var(--border2); border-radius: 20px; background: transparent; color: var(--text2); cursor: pointer; font-family: var(--sans); transition: all 0.12s; }
-  .pb:hover, .pb.on { background: var(--bg2); color: var(--text); font-weight: 600; }
-  .trm { margin-bottom: 1.25rem; }
-  .th2 { display: flex; align-items: baseline; gap: 9px; margin-bottom: 2px; }
-  .tsym { font-size: 14px; font-weight: 600; min-width: 42px; color: var(--text); }
-  .tname { font-size: 12.5px; color: var(--text2); }
-  .tdesc { font-size: 11.5px; color: var(--text3); font-style: italic; margin-bottom: 6px; }
-  .trow2 { display: flex; align-items: center; gap: 8px; }
-  .tedge { font-size: 10px; color: var(--text3); min-width: 30px; }
-  .tedge.r { text-align: right; }
-  .tval { font-size: 12px; font-weight: 600; min-width: 76px; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
-  input[type=range] { flex: 1; -webkit-appearance: none; height: 4px; background: var(--bg3); border-radius: 2px; outline: none; cursor: pointer; }
-  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; border: none; }
-  input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; border: none; }
-  .rng3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 4px 0 14px; }
-  .rc { background: var(--bg2); border-radius: var(--radius); padding: 10px; text-align: center; }
-  .rl { font-size: 10px; color: var(--text3); margin-bottom: 3px; }
-  .rv { font-size: 14px; font-weight: 600; color: var(--text); }
-  .pbar { height: 4px; background: var(--bg3); border-radius: 2px; margin: 8px 0 4px; overflow: hidden; }
-  .pfill { height: 100%; border-radius: 2px; background: var(--text2); transition: width 0.15s; }
-  .ptxt { font-size: 12px; color: var(--text2); }
-  footer { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem; border-top: 0.5px solid var(--border); font-size: 11.5px; color: var(--text3); line-height: 1.6; }
+  /* ── RESOURCES ── */
+  .res-cat { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 1rem; font-weight: 700; }
+  .res-item { border-bottom: 0.5px solid var(--border); padding: 1.1rem 0; }
+  .res-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; font-family: var(--serif); }
+  .res-authors { font-size: 12px; color: var(--text2); margin-bottom: 7px; }
+  .res-desc { font-size: 12.5px; color: var(--text2); line-height: 1.7; font-family: var(--serif); font-style: italic; }
+  .res-link {
+    flex-shrink: 0; font-size: 11px; padding: 4px 11px;
+    border: 0.5px solid var(--border2); border-radius: 20px;
+    text-decoration: none; white-space: nowrap; color: var(--text2);
+    background: var(--bg2); font-weight: 500; transition: all 0.12s;
+  }
+  .res-link:hover { border-color: var(--purple); color: var(--purple); background: var(--bg3); }
+  .res-link.free { border-color: rgba(0,153,105,0.4); color: var(--green); }
+  .res-link.free:hover { background: rgba(0,153,105,0.08); }
+
+  /* ── FOOTER ── */
+  footer {
+    max-width: var(--max);
+    margin: 3rem auto 0;
+    padding: 1.5rem 2rem;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  footer p { font-size: 11.5px; color: var(--text3); line-height: 1.6; }
+  footer .copy { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; font-style: italic; font-family: var(--serif); }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>The Drake Equation &amp; Its Variants</h1>
-  <p>An interactive explorer of ten formulations — from Frank Drake's 1961 conference agenda to Bayesian reanalyses of the twenty-first century. Begin by entering your own estimates, then explore how scientists have approached each term.</p>
+  <div class="header-inner">
+    <h1>The Drake Equation &amp; Its Variants</h1>
+    <p>An interactive explorer of ten formulations — from Frank Drake's 1961 conference agenda to Bayesian reanalyses of the twenty-first century. Begin by entering your own estimates, then explore how scientists have approached each term.</p>
+  </div>
 </header>
 
 <main>
@@ -102,7 +267,8 @@
 </main>
 
 <footer>
-  <p>Prepared for a workshop on the history of SETI. Each equation reflects the scientific priorities and uncertainties of its moment. The parameters are illustrative; consult the cited sources for full quantitative treatments.</p>
+  <p>Prepared for a workshop on the history of SETI. Each equation reflects the scientific priorities and uncertainties of its moment.</p>
+  <p class="copy">Copyright &copy; Claire Isabel Webb. Please contact author for use.</p>
 </footer>
 
 <script>
@@ -135,32 +301,30 @@ const gVals = {};
 GUESS_TERMS.forEach(t => gVals[t.id] = '');
 
 function fmtGuessN(n) {
-  if (!isFinite(n) || isNaN(n) || n <= 0) return '?';
-  if (n < 0.0001) return '<0.0001';
-  if (n < 1) return n.toFixed(4);
-  if (n >= 1e12) return (n/1e12).toFixed(1)+' trillion';
-  if (n >= 1e9)  return (n/1e9).toFixed(1)+' billion';
-  if (n >= 1e6)  return (n/1e6).toFixed(1)+' million';
-  if (n >= 1000) return Math.round(n).toLocaleString();
+  if (!isFinite(n)||isNaN(n)||n<=0) return '?';
+  if (n<0.0001) return '<0.0001';
+  if (n<1) return n.toFixed(4);
+  if (n>=1e12) return (n/1e12).toFixed(1)+' trillion';
+  if (n>=1e9) return (n/1e9).toFixed(1)+' billion';
+  if (n>=1e6) return (n/1e6).toFixed(1)+' million';
+  if (n>=1000) return Math.round(n).toLocaleString();
   return Math.round(n).toString();
 }
 
 function calcGuessN() {
   const vals = GUESS_TERMS.map(t => parseFloat(gVals[t.id]));
-  if (vals.some(v => isNaN(v) || v === '')) return null;
-  return vals.reduce((acc, v) => acc * v, 1);
+  if (vals.some(v => isNaN(v))) return null;
+  return vals.reduce((acc,v) => acc*v, 1);
 }
 
 function updateGuessN() {
   const n = calcGuessN();
-  document.getElementById('guess-n').textContent = n === null ? '?' : fmtGuessN(n);
+  document.getElementById('guess-n').textContent = n===null?'?':fmtGuessN(n);
 }
 
 function buildGuessTab() {
   const div = document.createElement('div');
-  div.id = 'pnl-guess';
-  div.className = 'pnl on';
-
+  div.id = 'pnl-guess'; div.className = 'pnl on';
   const rows = GUESS_TERMS.map(t => `
     <tr>
       <td class="gt-sym">${t.sym}</td>
@@ -169,35 +333,29 @@ function buildGuessTab() {
         <div class="gt-def">${t.def}</div>
       </td>
       <td class="gt-input-wrap">
-        <input class="gt-input" type="number" min="${t.min}" max="${t.max}" placeholder="?" id="gi-${t.id}"
-          oninput="gVals['${t.id}']=this.value; updateGuessN();">
+        <input class="gt-input" type="number" min="${t.min}" max="${t.max}" placeholder="?"
+          id="gi-${t.id}" oninput="gVals['${t.id}']=this.value;updateGuessN();">
         <div class="gt-hint">${t.hint}</div>
       </td>
     </tr>`).join('');
-
   div.innerHTML = `
-    <div class="guess-intro">
-      Before consulting any estimate, enter your own. What do you think the Milky Way contains?
-      There are no wrong answers — the equation was designed to make disagreement visible.
-    </div>
+    <div class="guess-intro">Before consulting any estimate, enter your own. What do you think the Milky Way contains? There are no wrong answers — the equation was designed to make disagreement visible.</div>
     <div class="guess-formula">N &nbsp;=&nbsp; R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L</div>
     <div class="guess-result-row">
       <div class="guess-n" id="guess-n">?</div>
       <div class="guess-n-label">communicating civilizations<br>in the Milky Way</div>
     </div>
     <table class="guess-table">${rows}</table>
-    <p class="guess-cta">When you have your estimate, explore the tabs above to see how scientists from 1960 to 2018 have approached each term.</p>
-  `;
+    <p class="guess-cta">When you have your estimate, explore the tabs above to see how scientists from 1960 to 2018 have approached each term.</p>`;
   return div;
 }
 
-/* ── EXPLORER TABS ── */
+/* ── EXPLORER EQUATIONS ── */
 const EQS=[
 {id:'drake',label:'Drake 1961',
-title:'The Drake Equation',
-cite:'Frank Drake · Green Bank Conference, West Virginia, 1961',
-note:'Devised to structure the agenda of the first SETI conference, the equation was never meant as a precise calculation — Drake later called it "a way of organizing our ignorance." His own estimates yielded N somewhere between 1,000 and 100,000,000.',
 formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L',
+cite:'Frank Drake · Green Bank Conference, West Virginia, 1961',
+note:'Devised to structure the agenda of the first SETI conference, the equation was never meant as a precise calculation — Drake later called it "a way of organizing our ignorance." His own estimates yielded N somewhere between 1,000 and 100,000,000. The equation represented a radical act of scientific optimism: that the question of extraterrestrial intelligence could be approached not through speculation but through the multiplication of empirically tractable quantities. Each term was assigned to a different expert at the conference table. That the resulting estimates differed by many orders of magnitude was, for Drake, the point.',
 outSym:'N',outDesc:'communicating civilizations in the Milky Way',
 terms:[
 {id:'r',sym:'R<sub>*</sub>',name:'Star formation rate',desc:'New stars formed per year in the Milky Way',min:0.5,max:20,step:0.5,def:1,dec:1},
@@ -216,10 +374,9 @@ presets:[
 calc:v=>v.r*v.fp*v.ne*v.fl*v.fi*v.fc*Math.pow(10,v.L)},
 
 {id:'bracewell',label:'Bracewell 1960',
-title:'The Bracewell Formulation',
-cite:'Ronald Bracewell · "Communications from Superior Galactic Communities," Nature, 1960',
-note:'Published one year before Drake\'s Green Bank conference, Bracewell\'s formulation is algebraically equivalent but conceptually distinct: it envisions interstellar probes rather than radio broadcasts as the medium of contact. This anticipates an entirely different SETI strategy — one that raises distinct questions about what f<sub>c</sub> really means.',
 formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L',
+cite:'Ronald Bracewell · "Communications from Superior Galactic Communities," Nature, 1960',
+note:'Published one year before Drake\'s Green Bank conference, Bracewell\'s formulation is algebraically equivalent but conceptually distinct: it envisions interstellar probes rather than radio broadcasts as the medium of contact. Bracewell reasoned that if superior communities exist, they would already have established a network of communication probes stationed near likely stellar candidates — including our own Sun. Rather than broadcasting into the void, we should be listening for a probe already in our solar system. This anticipates an entirely different SETI strategy, one that has gained renewed urgency in the age of Breakthrough Listen and interstellar object detection. The distinction between f<sub>c</sub> as "broadcasts" and f<sub>c</sub> as "probe programs" is subtle but carries very different assumptions about the economics and patience of advanced civilizations.',
 outSym:'N',outDesc:'probe-capable civilizations in the Milky Way',
 terms:[
 {id:'r',sym:'R<sub>*</sub>',name:'Star formation rate',desc:'New stars formed per year in the Milky Way',min:0.5,max:20,step:0.5,def:10,dec:1},
@@ -234,17 +391,16 @@ presets:[{name:'Bracewell default',v:{r:10,fp:0.5,ne:2,fl:1,fi:0.1,fc:0.1,L:6}}]
 calc:v=>v.r*v.fp*v.ne*v.fl*v.fi*v.fc*Math.pow(10,v.L)},
 
 {id:'sagan',label:'Sagan 1966',
-title:'Sagan &amp; Shklovsky',
-cite:'Carl Sagan &amp; Iosif Shklovsky · Intelligent Life in the Universe, 1966',
-note:'Sagan and Shklovsky kept Drake\'s structure but applied rigorous uncertainty ranges to each term — the first serious treatment of the equation as a statistical object. Sagan\'s own estimates were optimistic for biological terms; he believed f<sub>i</sub> was near 1. His most important intervention was treating L as a moral variable: longevity depends on whether a civilization survives its own technology.',
 formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L',
+cite:'Carl Sagan &amp; Iosif Shklovsky · Intelligent Life in the Universe, 1966',
+note:'Sagan and Shklovsky kept Drake\'s structure but applied rigorous uncertainty ranges to each term — the first serious treatment of the equation as a statistical object. Sagan\'s own estimates were strikingly optimistic for the biological terms: he believed f<sub>i</sub> was near 1, arguing that intelligence was a likely outcome of evolution rather than a cosmic accident. His most consequential intervention was treating L not as a given but as a moral variable. A civilization\'s longevity, Sagan argued, depended entirely on whether it could survive the period of technological adolescence — the moment when it acquires the capacity for self-destruction. Written during the Cold War, the equation became a meditation on nuclear annihilation as much as a scientific framework. The book remains one of the most ambitious interdisciplinary documents of the twentieth century.',
 outSym:'N',outDesc:'communicating civilizations in the Milky Way',
 terms:[
 {id:'r',sym:'R<sub>*</sub>',name:'Star formation rate',desc:'New stars formed per year in the Milky Way',min:0.5,max:20,step:0.5,def:10,dec:1},
 {id:'fp',sym:'f<sub>p</sub>',name:'Fraction with planets',desc:'Stars hosting at least one planetary system',min:0,max:1,step:0.01,def:0.5,dec:2},
 {id:'ne',sym:'n<sub>e</sub>',name:'Habitable planets per star',desc:'Planets per system capable of supporting life',min:0,max:5,step:0.1,def:2,dec:1},
 {id:'fl',sym:'f<sub>l</sub>',name:'Life fraction',desc:'Suitable planets on which life actually arises',min:0,max:1,step:0.01,def:1,dec:2},
-{id:'fi',sym:'f<sub>i</sub>',name:'Intelligence fraction',desc:'Sagan considered this near 1 — perhaps convergent with evolution',min:0,max:1,step:0.01,def:1,dec:2},
+{id:'fi',sym:'f<sub>i</sub>',name:'Intelligence fraction',desc:'Sagan considered this near 1 — intelligence as a convergent outcome of evolution',min:0,max:1,step:0.01,def:1,dec:2},
 {id:'fc',sym:'f<sub>c</sub>',name:'Technology fraction',desc:'Civilizations producing detectable technosignatures',min:0,max:1,step:0.01,def:0.1,dec:2},
 {id:'L',sym:'L — the moral term',name:'Longevity',desc:'Years a civilization survives its own technology (log scale)',min:2,max:9,step:0.05,def:7,dec:0,log:true},
 ],
@@ -256,10 +412,9 @@ presets:[
 calc:v=>v.r*v.fp*v.ne*v.fl*v.fi*v.fc*Math.pow(10,v.L)},
 
 {id:'meti',label:'METI variant',
-title:'The METI Variant',
-cite:'Debated formulation · c. 1970s–present',
-note:'The METI variant splits f<sub>c</sub> into two separate terms: f<sub>d</sub>, civilizations that produce any detectable passive signature, and f<sub>m</sub>, those that actively transmit. The distinction is philosophically charged — a civilization might be technically advanced yet choose silence, whether from indifference, caution, or the logic of the so-called "dark forest."',
 formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>d</sub> &thinsp;&middot;&thinsp; f<sub>m</sub> &thinsp;&middot;&thinsp; L',
+cite:'Debated formulation · c. 1970s–present',
+note:'The METI variant splits f<sub>c</sub> into two separate terms: f<sub>d</sub>, civilizations that produce any detectable passive signature (waste heat, atmospheric chemistry, megastructures), and f<sub>m</sub>, those that actively transmit directed signals. The distinction carries enormous philosophical weight. A civilization might be technically advanced and observable in principle yet choose silence — whether from indifference, the strategic calculus of the so-called "dark forest," or a simple lack of motivation to broadcast. The debate between SETI (passive listening) and METI (active transmission) is, at its core, an argument about what f<sub>m</sub> means and whether humanity should be trying to change its own value. Some SETI researchers argue that the very fact we have not detected signals suggests f<sub>m</sub> is vanishingly small — and that we should be cautious about raising it ourselves.',
 outSym:'N',outDesc:'actively messaging civilizations detectable from Earth',
 terms:[
 {id:'r',sym:'R<sub>*</sub>',name:'Star formation rate',desc:'New stars formed per year in the Milky Way',min:0.5,max:20,step:0.5,def:2,dec:1},
@@ -279,10 +434,9 @@ presets:[
 calc:v=>v.r*v.fp*v.ne*v.fl*v.fi*v.fd*v.fm*Math.pow(10,v.L)},
 
 {id:'seager',label:'Seager 2013',
-title:'The Seager Equation',
-cite:'Sara Seager · "Exoplanet Habitability," Science, 2013',
-note:'Seager reframed the question for the age of space telescopes: rather than asking how many civilizations communicate, she asked how many planets in a given survey might show detectable biosignature gases. Each term is, in principle, observationally tractable — a crucial departure from the purely theoretical structure of Drake\'s original. N here is not civilizations but detectable worlds.',
 formula:"N&prime; = N<sub>*</sub> &thinsp;&middot;&thinsp; F<sub>Q</sub> &thinsp;&middot;&thinsp; F<sub>HZ</sub> &thinsp;&middot;&thinsp; F<sub>o</sub> &thinsp;&middot;&thinsp; F<sub>L</sub> &thinsp;&middot;&thinsp; F<sub>S</sub>",
+cite:'Sara Seager · "Exoplanet Habitability," Science, 2013',
+note:'Seager reframed the question entirely for the era of space telescopes. Rather than asking how many civilizations communicate, she asked how many planets in a given survey might show detectable biosignature gases in their atmospheres — a question answerable, in principle, with instruments like the James Webb Space Telescope. Each term in the Seager Equation is, at least in principle, observationally tractable: astronomers can measure stellar activity, estimate habitable zone occurrence rates, and characterize atmospheric transmission spectra. This is a profound departure from Drake\'s original, where most terms were purely theoretical. The Seager Equation does not ask whether civilizations exist; it asks whether life, in any form, leaves a chemical trace legible to our telescopes. N here is not civilizations but detectable worlds.',
 outSym:"N&prime;",outDesc:'planets with detectable biosignature gases in a space telescope survey',
 terms:[
 {id:'nstar',sym:'N<sub>*</sub>',name:'Stars surveyed',desc:'Number of target stars observed in the mission',min:10,max:10000,step:10,def:100,dec:0,isN:true},
@@ -300,10 +454,9 @@ presets:[
 calc:v=>v.nstar*v.fq*v.fhz*v.fo*v.fl2*v.fs},
 
 {id:'rareearth',label:'Rare Earth 2000',
-title:'The Rare Earth Equation',
-cite:'Peter Ward &amp; Joe Brownlee · Rare Earth, Springer-Copernicus, 2000',
-note:'Ward and Brownlee argued that complex life requires an improbable convergence: a galactic habitable zone, a Jupiter-class protector deflecting cometary bombardment, a large stabilizing moon, and more. Each additional term compresses N dramatically. Their implicit conclusion — startling at the time — was that intelligent life may be unique to Earth. N<sub>*</sub> is fixed at 2 &times; 10&sup1;&sup1; Milky Way stars.',
 formula:'N = N<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; f<sub>pm</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>g</sub> &thinsp;&middot;&thinsp; f<sub>ji</sub> &thinsp;&middot;&thinsp; f<sub>mo</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L',
+cite:'Peter Ward &amp; Joe Brownlee · Rare Earth, Springer-Copernicus, 2000',
+note:'Ward and Brownlee argued that complex life requires an improbable convergence of conditions that Drake\'s equation radically underspecified. A galactic habitable zone keeps a planet away from lethal radiation; a Jupiter-class protector deflects cometary bombardment; a large stabilizing moon prevents catastrophic axial wobble; suitable plate tectonics recycle nutrients across geological time. Each additional term compresses N dramatically toward 1 or below. Their implicit conclusion — that Earth may be unique in hosting complex life — was both exhilarating and deeply contested. Critics noted that many of these conditions may be correlated rather than independent, and that the equation risks multiplying probabilities that are not truly separable. Nevertheless, the Rare Earth hypothesis forced a generation of astrobiologists to take seriously the question of which features of Earth are essential, and which are contingent. N<sub>*</sub> is fixed at 2 &times; 10&sup1;&sup1; Milky Way stars.',
 outSym:'N',outDesc:'planets with complex life in the Milky Way (N* = 2 &times; 10&sup1;&sup1; fixed)',
 terms:[
 {id:'fp2',sym:'f<sub>p</sub>',name:'Fraction with planets',desc:'Stars hosting a planetary system',min:0,max:1,step:0.01,def:0.5,dec:2},
@@ -324,10 +477,9 @@ presets:[
 calc:v=>2e11*v.fp2*v.fpm*v.ne2*v.fg*v.fji*v.fmo*v.fl3*v.fi3*v.fc3*Math.pow(10,v.L3)},
 
 {id:'grinspoon',label:'Grinspoon 2003',
-title:'The Wisdom Term',
-cite:'David Grinspoon · Lonely Planets: The Natural Philosophy of Alien Life, 2003',
-note:'Grinspoon argued that Drake\'s L is not a passive duration but an active achievement. He proposed a "wisdom fraction" f<sub>w</sub> — the probability that a civilization transitions from ecological self-destruction to long-term sustainability. Without f<sub>w</sub>, L tends toward brevity. The equation becomes an ethical proposition: intelligence is necessary but wisdom is sufficient.',
 formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; f<sub>w</sub> &thinsp;&middot;&thinsp; L',
+cite:'David Grinspoon · Lonely Planets: The Natural Philosophy of Alien Life, 2003',
+note:'Grinspoon argued that Drake\'s L is not a passive duration but an active achievement — something a civilization must work to earn rather than simply inherit. He proposed a "wisdom fraction" f<sub>w</sub>: the probability that a civilization successfully navigates the transition from ecological self-destruction to long-term sustainability. Without f<sub>w</sub>, L tends toward brevity by default; most civilizations that develop technology would be expected to destroy themselves before reaching the kind of longevity that makes detection likely. What makes Grinspoon\'s formulation philosophically distinctive is that it renders the equation explicitly normative. The universe, on this reading, is not simply a fact to be calculated but a moral landscape that rewards wisdom. Whether f<sub>w</sub> is a quantity we can estimate, or a value we must choose to embody, remains deliberately ambiguous.',
 outSym:'N',outDesc:'wise, long-lived communicating civilizations',
 terms:[
 {id:'r4',sym:'R<sub>*</sub>',name:'Star formation rate',desc:'New stars formed per year in the Milky Way',min:0.5,max:20,step:0.5,def:2,dec:1},
@@ -347,10 +499,9 @@ presets:[
 calc:v=>v.r4*v.fp4*v.ne4*v.fl4*v.fi4*v.fc4*v.fw*Math.pow(10,v.L4)},
 
 {id:'cirkovic',label:'Ćirković 2008',
-title:'The Temporal Drake Equation',
-cite:'Milan Ćirković &amp; B. Vukotić · Origins of Life and Evolution of Biospheres, 2008',
-note:'Ćirković and Vukotić observed that the Drake Equation ignores when in cosmic history civilizations arise. The early universe lacked the heavy elements necessary for rocky planets; the far future may be inhospitable as stellar populations evolve. They introduced a temporal habitability factor f<sub>t</sub> — the fraction of cosmic time permitting complex life — transforming N into a time-dependent function N(t).',
 formula:'N(t) = R<sub>*</sub>(t) &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; f<sub>t</sub> &thinsp;&middot;&thinsp; L',
+cite:'Milan Ćirković &amp; B. Vukotić · Origins of Life and Evolution of Biospheres, 2008',
+note:'Ćirković and Vukotić observed that the Drake Equation is essentially timeless — it treats the galaxy as a static backdrop rather than an evolving system. But the early universe lacked the heavy elements necessary for rocky planets; gamma-ray bursts periodically sterilized large regions of the galactic disk; and the far future may favor very different conditions for life than the present. They introduced a temporal habitability factor f<sub>t</sub> — the fraction of cosmic time during which the galaxy can support complex life — transforming N into a time-dependent function N(t). The model draws on the concept of an "astrobiological phase transition": a moment when gamma-ray burst rates drop sufficiently for life to gain a foothold across the galaxy. Their argument implies that the question is not merely how many civilizations exist, but when they exist — and whether we find ourselves near the beginning, middle, or end of a galactic window for intelligence.',
 outSym:'N(t)',outDesc:'communicating civilizations active now, corrected for cosmic epoch',
 terms:[
 {id:'r5',sym:'R<sub>*</sub>(t)',name:'Current star formation rate',desc:'Stars formed per year at the present epoch (~2 Gyr after peak)',min:0.5,max:20,step:0.5,def:2,dec:1},
@@ -370,10 +521,9 @@ presets:[
 calc:v=>v.r5*v.fp5*v.ne5*v.fl5*v.fi5*v.fc5*v.ft*Math.pow(10,v.L5)},
 
 {id:'maccone',label:'Maccone 2010',
-title:'The Statistical Drake Equation',
-cite:'Claudio Maccone · Mathematical SETI, Springer, 2010',
-note:'Maccone demonstrated that if each Drake term is treated as a lognormal random variable — reasonable when knowledge is limited to orders of magnitude — then N is itself lognormal. This transforms the equation from a point estimate into a probability distribution. The &sigma; slider controls how many orders of magnitude of uncertainty to assign each term; the result is shown as a confidence interval.',
 formula:'log N ~ &Nscr;(&mu;, &sigma;&sup2;) &nbsp;|&nbsp; each factor ~ Lognormal',
+cite:'Claudio Maccone · Mathematical SETI, Springer, 2010',
+note:'Maccone demonstrated that if each Drake term is treated as a lognormal random variable — a reasonable assumption when our knowledge is limited to orders of magnitude — then N is itself lognormal with computable mean and variance. This transforms the equation from a point estimate into a probability distribution, and the result is striking: even moderate uncertainty on each individual term compounds into enormous uncertainty about N. The &sigma; slider below controls how many orders of magnitude of uncertainty to assign each term. At &sigma; = 1, the 1&sigma; confidence interval already spans many powers of ten. At &sigma; = 2, the range becomes essentially unbounded. Maccone\'s formulation makes explicit what practitioners had always sensed: that the Drake Equation is less a calculation than a structured record of what we do not know.',
 outSym:'N',outDesc:'median estimate — see confidence interval below',
 special:'maccone',
 terms:[
@@ -384,7 +534,7 @@ terms:[
 {id:'fi6',sym:'f<sub>i</sub>',name:'Intelligence fraction',desc:'Life-bearing worlds that develop intelligence',min:0,max:1,step:0.001,def:0.1,dec:3},
 {id:'fc6',sym:'f<sub>c</sub>',name:'Technology fraction',desc:'Civilizations producing detectable technosignatures',min:0,max:1,step:0.01,def:0.1,dec:2},
 {id:'L6',sym:'L',name:'Longevity',desc:'Years a civilization remains detectable (log scale)',min:2,max:9,step:0.05,def:4,dec:0,log:true},
-{id:'sigma',sym:'&sigma;',name:'Uncertainty spread per term (orders of magnitude)',desc:'Log&#8321;&#8320; standard deviation per term — how uncertain are we? (1 = one order of magnitude)',min:0.1,max:3,step:0.1,def:1,dec:1},
+{id:'sigma',sym:'&sigma;',name:'Uncertainty spread per term (orders of magnitude)',desc:'Log&#8321;&#8320; standard deviation per term — 1 = one order of magnitude uncertainty',min:0.1,max:3,step:0.1,def:1,dec:1},
 ],
 presets:[
 {name:'Low uncertainty',v:{r6:2,fp6:0.8,ne6:0.5,fl6:0.5,fi6:0.1,fc6:0.1,L6:4,sigma:0.5}},
@@ -398,10 +548,9 @@ return{median:Math.pow(10,lm),low:Math.pow(10,lm-ts),high:Math.pow(10,lm+ts)};
 }},
 
 {id:'sandberg',label:'Sandberg 2018',
-title:'Bayesian Reanalysis',
-cite:'Sandberg, Drexler &amp; Ord · "Dissolving the Fermi Paradox," arXiv:1806.02404, 2018',
-note:'Sandberg, Drexler and Ord replaced Drake\'s point estimates with probability distributions drawn from the published literature — log-uniform priors over scientifically plausible ranges. Their result was striking: given appropriate uncertainty, the probability that we are alone in the observable universe exceeds 50%. The Fermi paradox may dissolve not into an answer but into an honest acknowledgment of ignorance.',
 formula:'P(N<sub>obs</sub> &ge; 1) computed from posterior over parameter distributions',
+cite:'Sandberg, Drexler &amp; Ord · "Dissolving the Fermi Paradox," arXiv:1806.02404, 2018',
+note:'Sandberg, Drexler and Ord replaced Drake\'s point estimates with probability distributions drawn from the actual published scientific literature — log-uniform priors spanning the full range of credible expert opinion for each term. Their result was striking: when these distributions are multiplied together, the resulting distribution for N has a very long tail toward small values. The probability that we are alone in the observable universe exceeds 50% under a wide range of reasonable assumptions. This does not mean we are alone — it means that our uncertainty is sufficient to make solitude a live possibility that cannot be dismissed. The Fermi paradox, on this reading, dissolves: there is no conflict between the apparent silence of the universe and the existence of life, because our prior expectation of a loud universe was never well-founded.',
 outSym:'N',outDesc:'Milky Way estimate (point) — see solitude probability below',
 special:'sandberg',
 terms:[
@@ -448,13 +597,12 @@ document.getElementById('sdg-desc').textContent=pct>70?'Likely alone in the Milk
 document.getElementById('nr-'+eq.id).textContent=fmtN(eq.calc(v));
 }}
 
-/* Build tabs */
 const tabsEl=document.getElementById('tabs');
 const panelsEl=document.getElementById('panels');
 
-/* Guess tab button */
+/* Guess tab */
 const guessBtn=document.createElement('button');
-guessBtn.className='tb on';guessBtn.textContent='Your estimate';
+guessBtn.className='tb on green-tab';guessBtn.textContent='Your estimate';
 guessBtn.onclick=()=>{
 document.querySelectorAll('.tb').forEach(x=>x.classList.remove('on'));
 document.querySelectorAll('.pnl').forEach(x=>x.classList.remove('on'));
@@ -463,7 +611,7 @@ guessBtn.classList.add('on');document.getElementById('pnl-guess').classList.add(
 tabsEl.appendChild(guessBtn);
 panelsEl.appendChild(buildGuessTab());
 
-/* Explorer tab buttons */
+/* Explorer tabs */
 EQS.forEach(eq=>{
 const b=document.createElement('button');
 b.className='tb';b.textContent=eq.label;
@@ -478,7 +626,7 @@ div.id='pnl-'+eq.id;div.className='pnl';
 
 let special='';
 if(eq.special==='maccone'){special='<div class="rng3"><div class="rc"><div class="rl">&minus;1&sigma; low</div><div class="rv" id="mcc-low">—</div></div><div class="rc"><div class="rl">median</div><div class="rv" id="mcc-med">—</div></div><div class="rc"><div class="rl">+1&sigma; high</div><div class="rv" id="mcc-hi">—</div></div></div>';}
-else if(eq.special==='sandberg'){special='<div style="margin-top:8px"><div class="pbar"><div class="pfill" id="sdg-fill" style="width:50%"></div></div><div style="display:flex;justify-content:space-between"><span class="ptxt" id="sdg-desc">—</span><span class="ptxt" style="font-weight:600" id="sdg-pct">—</span></div><div style="font-size:11px;color:var(--text3);margin-top:3px">P(alone in the Milky Way)</div></div>';}
+else if(eq.special==='sandberg'){special='<div style="margin-top:8px"><div class="pbar"><div class="pfill" id="sdg-fill" style="width:50%"></div></div><div style="display:flex;justify-content:space-between"><span class="ptxt" id="sdg-desc">—</span><span class="ptxt" style="font-weight:600;color:var(--purple)" id="sdg-pct">—</span></div><div style="font-size:11px;color:var(--text3);margin-top:3px">P(alone in the Milky Way)</div></div>';}
 
 const presetsHtml=eq.presets.map((p,pi)=>'<button class="pb'+(pi===0?' on':'')+'" onclick="applyPreset(\''+eq.id+'\','+pi+')">'+p.name+'</button>').join('');
 const termsHtml=eq.terms.map(t=>{
@@ -487,8 +635,53 @@ const mx=t.log?'1B yr':t.isN?'10k':t.max.toString();
 return'<div class="trm"><div class="th2"><span class="tsym">'+t.sym+'</span><span class="tname">'+t.name+'</span></div><div class="tdesc">'+t.desc+'</div><div class="trow2"><span class="tedge">'+mn+'</span><input type="range" min="'+t.min+'" max="'+t.max+'" step="'+t.step+'" value="'+t.def+'" oninput="onSlide(\''+eq.id+'\',\''+t.id+'\',this.value)"><span class="tedge r">'+mx+'</span><span class="tval" id="tv-'+eq.id+'-'+t.id+'">'+fmtTval(t,t.def)+'</span></div></div>';
 }).join('');
 
-div.innerHTML='<p class="eq-f">'+eq.formula+'</p><p class="eq-c">'+eq.cite+'</p><div class="eq-note">'+eq.note+'</div><div class="nr" id="nr-'+eq.id+'">—</div><div class="nd">'+eq.outSym+' — '+eq.outDesc+'</div>'+special+'<div class="ps" id="ps-'+eq.id+'">'+presetsHtml+'</div>'+termsHtml;
+div.innerHTML='<p class="eq-f">'+eq.formula+'</p><p class="eq-c">'+eq.cite+'</p><hr class="eq-rule"><div class="eq-note">'+eq.note+'</div><div class="nr" id="nr-'+eq.id+'">—</div><div class="nd">'+eq.outSym+' — '+eq.outDesc+'</div>'+special+'<div class="ps" id="ps-'+eq.id+'">'+presetsHtml+'</div>'+termsHtml;
 panelsEl.appendChild(div);updateDisplay(eq);});
+
+/* Resources tab */
+const RESOURCES=[
+{category:'Primary sources — open access',items:[
+{authors:'Ronald N. Bracewell',title:'Communications from Superior Galactic Communities',venue:'Nature, vol. 186, pp. 670–671',year:'1960',desc:'The paper that preceded Drake\'s equation by one year, proposing interstellar probes rather than radio broadcasts as the medium of contact. Algebraically equivalent to Drake\'s formulation, but conceptually distinct in its assumptions about the economics and strategy of advanced civilizations.',link:'https://lweb.cfa.harvard.edu/~loeb/Bracewell1960.pdf',free:true},
+{authors:'Sara Seager',title:'Exoplanet Habitability',venue:'Science, vol. 340, pp. 577–581',year:'2013',desc:'Reformulates the Drake question for the era of space telescopes: how many planets in a given survey might show detectable biosignature gases? Each term is observationally tractable — a major departure from Drake\'s original.',link:'http://hoffman.cm.utexas.edu/courses/Science-2013-Seager-577-81.pdf',free:true},
+{authors:'Anders Sandberg, Eric Drexler &amp; Toby Ord',title:'Dissolving the Fermi Paradox',venue:'arXiv:1806.02404',year:'2018',desc:'Replaces Drake\'s point estimates with log-uniform probability distributions drawn from the scientific literature. Result: a substantial probability that we are alone in the observable universe. The paradox dissolves into acknowledged ignorance.',link:'https://arxiv.org/pdf/1806.02404',free:true},
+]},
+{category:'Primary sources — institutional access required',items:[
+{authors:'Frank D. Drake',title:'Project Ozma',venue:'Physics Today, vol. 14, no. 4, pp. 40–46',year:'1961',desc:'Drake\'s account of the first SETI experiment and the reasoning behind it — including, implicitly, the equation he devised to structure the Green Bank conference agenda. The founding document of modern SETI.',link:'https://pubs.aip.org/physicstoday/article-abstract/14/4/40/422237/Project-Ozma',free:false},
+{authors:'Milan M. Ćirković &amp; Branislav Vukotić',title:'Astrobiological Phase Transition: Towards Resolution of Fermi\'s Paradox',venue:'Origins of Life and Evolution of Biospheres, vol. 38, pp. 535–547',year:'2008',desc:'Introduces a temporal habitability factor, arguing that the Drake Equation ignores when in cosmic history civilizations arise. Star formation rates, heavy element availability, and gamma-ray burst frequencies all vary with epoch.',link:'https://link.springer.com/article/10.1007/s11084-008-9149-y',free:false},
+]},
+{category:'Books',items:[
+{authors:'Carl Sagan &amp; Iosif Shklovsky',title:'Intelligent Life in the Universe',venue:'Holden-Day',year:'1966',desc:'The first rigorous treatment of the Drake Equation as a statistical object, with uncertainty ranges on every term. Sagan\'s conviction that f<sub>i</sub> ≈ 1 and his moral reading of L as a civilizational challenge shaped SETI for a generation.',link:'https://www.worldcat.org/title/intelligent-life-in-the-universe/oclc/473',free:false},
+{authors:'Peter D. Ward &amp; Joe Brownlee',title:'Rare Earth: Why Complex Life Is Uncommon in the Universe',venue:'Springer-Copernicus',year:'2000',desc:'The case for a dramatically expanded Drake Equation: galactic habitable zones, Jupiter-class guardians, stabilizing moons, and plate tectonics each become additional terms. Their implicit conclusion — Earth may be unique — was widely contested.',link:'https://link.springer.com/book/10.1007/b97646',free:false},
+{authors:'David Grinspoon',title:'Lonely Planets: The Natural Philosophy of Alien Life',venue:'Ecco / HarperCollins',year:'2003',desc:'Proposes the "wisdom fraction" f<sub>w</sub>: the probability that a civilization transitions from self-destruction to long-term sustainability. The equation becomes an ethical as much as a scientific proposition.',link:'https://www.worldcat.org/title/lonely-planets/oclc/51726902',free:false},
+{authors:'Claudio Maccone',title:'Mathematical SETI: Statistics, Signal Processing, Space Missions',venue:'Springer-Praxis',year:'2012',desc:'Treats each Drake term as a lognormal random variable, yielding N as a probability distribution rather than a point estimate. A rigorous statistical framework that makes the equation\'s uncertainty explicit and computable.',link:'https://link.springer.com/book/10.1007/978-3-642-27437-4',free:false},
+]},
+{category:'Further reading',items:[
+{authors:'Giuseppe Cocconi &amp; Philip Morrison',title:'Searching for Interstellar Communications',venue:'Nature, vol. 184, pp. 844–846',year:'1959',desc:'The paper that catalyzed everything: the first scientific proposal to search for extraterrestrial radio signals at the 21 cm hydrogen line. Drake read it, made Project Ozma public, and convened the Green Bank conference.',link:'https://www.nature.com/articles/184844a0',free:false},
+{authors:'Frank Drake &amp; Dava Sobel',title:'Is Anyone Out There? The Scientific Search for Extraterrestrial Intelligence',venue:'Delacorte Press',year:'1992',desc:'Drake\'s memoir of the Green Bank conference and the equation\'s origin — the most readable account of what the equation was actually meant to do, and why Drake considered it an agenda rather than a calculation.',link:'https://www.worldcat.org/title/is-anyone-out-there/oclc/25508015',free:false},
+]},
+];
+
+const resBtn=document.createElement('button');
+resBtn.className='tb green-tab';resBtn.textContent='Resources';
+resBtn.onclick=()=>{
+document.querySelectorAll('.tb').forEach(x=>x.classList.remove('on'));
+document.querySelectorAll('.pnl').forEach(x=>x.classList.remove('on'));
+resBtn.classList.add('on');document.getElementById('pnl-resources').classList.add('on');
+};tabsEl.appendChild(resBtn);
+
+const resPnl=document.createElement('div');
+resPnl.id='pnl-resources';resPnl.className='pnl';
+let rhtml='<div style="padding-top:0.25rem">';
+RESOURCES.forEach(g=>{
+rhtml+=`<div style="margin-bottom:2.25rem"><div class="res-cat">${g.category}</div>`;
+g.items.forEach(item=>{
+rhtml+=`<div class="res-item"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div class="res-title">${item.title}</div><div class="res-authors">${item.authors} &middot; <em>${item.venue}</em> &middot; ${item.year}</div><div class="res-desc">${item.desc}</div></div><a href="${item.link}" target="_blank" rel="noopener" class="res-link${item.free?' free':''}">${item.free?'↓ Free PDF':'↗ View'}</a></div></div>`;
+});
+rhtml+='</div>';
+});
+rhtml+='<p style="font-size:11.5px;color:var(--text3);font-style:italic;margin-top:0.5rem;font-family:var(--serif)">For books and paywalled articles, most university library systems carry physical or digital copies. The Ćirković &amp; Vukotić (2008) paper is also available on ResearchGate with a free account.</p></div>';
+resPnl.innerHTML=rhtml;
+panelsEl.appendChild(resPnl);
 
 function onSlide(eqId,tid,val){
 STATE[eqId][tid]=parseFloat(val);
@@ -502,194 +695,11 @@ function applyPreset(eqId,pi){
 const eq=EQS.find(e=>e.id===eqId);
 Object.assign(STATE[eqId],eq.presets[pi].v);
 eq.terms.forEach(t=>{
-const s=document.querySelector('input[oninput*="\'"+eqId+"\',\'"+t.id+"\'"]');
+const s=document.querySelector('input[oninput*="\''+eqId+'\',\''+t.id+'\'"]');
 if(s){s.value=STATE[eqId][t.id];document.getElementById('tv-'+eqId+'-'+t.id).textContent=fmtTval(t,STATE[eqId][t.id]);}
 });
 document.querySelectorAll('#ps-'+eqId+' .pb').forEach((b,i)=>b.classList.toggle('on',i===pi));
 updateDisplay(eq);}
-
-/* ── RESOURCES TAB ── */
-const RESOURCES = [
-  {
-    category: 'Primary sources — open access',
-    items: [
-      {
-        authors: 'Ronald N. Bracewell',
-        title: 'Communications from Superior Galactic Communities',
-        venue: 'Nature, vol. 186, pp. 670–671',
-        year: '1960',
-        desc: 'The paper that preceded Drake\'s equation by one year, proposing interstellar probes rather than radio broadcasts as the medium of contact. Algebraically equivalent to Drake\'s formulation, but conceptually distinct.',
-        link: 'https://lweb.cfa.harvard.edu/~loeb/Bracewell1960.pdf',
-        access: 'Free PDF',
-      },
-      {
-        authors: 'Sara Seager',
-        title: 'Exoplanet Habitability',
-        venue: 'Science, vol. 340, pp. 577–581',
-        year: '2013',
-        desc: 'Reformulates the Drake question for the era of space telescopes: how many planets in a given survey might show detectable biosignature gases? Each term is observationally tractable, a major departure from Drake\'s original.',
-        link: 'http://hoffman.cm.utexas.edu/courses/Science-2013-Seager-577-81.pdf',
-        access: 'Free PDF',
-      },
-      {
-        authors: 'Anders Sandberg, Eric Drexler & Toby Ord',
-        title: 'Dissolving the Fermi Paradox',
-        venue: 'arXiv:1806.02404',
-        year: '2018',
-        desc: 'Replaces Drake\'s point estimates with log-uniform probability distributions drawn from the scientific literature. Result: a substantial probability that we are alone in the observable universe. The paradox dissolves into acknowledged ignorance.',
-        link: 'https://arxiv.org/pdf/1806.02404',
-        access: 'Free PDF',
-      },
-    ]
-  },
-  {
-    category: 'Primary sources — institutional access required',
-    items: [
-      {
-        authors: 'Frank D. Drake',
-        title: 'Project Ozma',
-        venue: 'Physics Today, vol. 14, no. 4, pp. 40–46',
-        year: '1961',
-        desc: 'Drake\'s account of the first SETI experiment and the reasoning behind it — including, implicitly, the equation he devised to structure the Green Bank conference agenda.',
-        link: 'https://pubs.aip.org/physicstoday/article-abstract/14/4/40/422237/Project-Ozma',
-        access: 'Publisher page',
-      },
-      {
-        authors: 'Milan M. Ćirković & Branislav Vukotić',
-        title: 'Astrobiological Phase Transition: Towards Resolution of Fermi\'s Paradox',
-        venue: 'Origins of Life and Evolution of Biospheres, vol. 38, pp. 535–547',
-        year: '2008',
-        desc: 'Introduces a temporal habitability factor, arguing that the Drake Equation ignores when in cosmic history civilizations arise. Star formation rates, heavy element availability, and gamma-ray burst frequencies all vary with cosmic epoch.',
-        link: 'https://link.springer.com/article/10.1007/s11084-008-9149-y',
-        access: 'Publisher page',
-      },
-    ]
-  },
-  {
-    category: 'Books',
-    items: [
-      {
-        authors: 'Carl Sagan & Iosif Shklovsky',
-        title: 'Intelligent Life in the Universe',
-        venue: 'Holden-Day',
-        year: '1966',
-        desc: 'The first rigorous treatment of the Drake Equation as a statistical object, with uncertainty ranges on every term. Sagan\'s conviction that f<sub>i</sub> ≈ 1 and his moral reading of L as a civilizational challenge shaped SETI for a generation.',
-        link: 'https://www.worldcat.org/title/intelligent-life-in-the-universe/oclc/473',
-        access: 'Library search',
-      },
-      {
-        authors: 'Peter D. Ward & Joe Brownlee',
-        title: 'Rare Earth: Why Complex Life Is Uncommon in the Universe',
-        venue: 'Springer-Copernicus',
-        year: '2000',
-        desc: 'The case for a dramatically expanded Drake Equation: galactic habitable zones, Jupiter-class guardians, stabilizing moons, and plate tectonics each become additional terms. The implicit conclusion — Earth may be unique — was widely contested.',
-        link: 'https://link.springer.com/book/10.1007/b97646',
-        access: 'Publisher page',
-      },
-      {
-        authors: 'David Grinspoon',
-        title: 'Lonely Planets: The Natural Philosophy of Alien Life',
-        venue: 'Ecco / HarperCollins',
-        year: '2003',
-        desc: 'Proposes the "wisdom fraction" f<sub>w</sub>: the probability that a civilization transitions from self-destruction to long-term sustainability. Without it, L is short by default. The equation becomes an ethical as much as a scientific proposition.',
-        link: 'https://www.worldcat.org/title/lonely-planets/oclc/51726902',
-        access: 'Library search',
-      },
-      {
-        authors: 'Claudio Maccone',
-        title: 'Mathematical SETI: Statistics, Signal Processing, Space Missions',
-        venue: 'Springer-Praxis',
-        year: '2012',
-        desc: 'Treats each Drake term as a lognormal random variable, yielding N as a probability distribution rather than a point estimate. A rigorous statistical framework that makes the equation\'s uncertainty explicit and computable.',
-        link: 'https://link.springer.com/book/10.1007/978-3-642-27437-4',
-        access: 'Publisher page',
-      },
-    ]
-  },
-  {
-    category: 'Further reading',
-    items: [
-      {
-        authors: 'Giuseppe Cocconi & Philip Morrison',
-        title: 'Searching for Interstellar Communications',
-        venue: 'Nature, vol. 184, pp. 844–846',
-        year: '1959',
-        desc: 'The paper that preceded and catalyzed everything: the first scientific proposal to search for extraterrestrial radio signals, at the 21 cm hydrogen line. Drake read this and made Project Ozma public.',
-        link: 'https://www.nature.com/articles/184844a0',
-        access: 'Publisher page',
-      },
-      {
-        authors: 'Frank Drake & Dava Sobel',
-        title: 'Is Anyone Out There? The Scientific Search for Extraterrestrial Intelligence',
-        venue: 'Delacorte Press',
-        year: '1992',
-        desc: 'Drake\'s memoir of the Green Bank conference and the equation\'s origin — the most readable account of what the equation was actually meant to do, and why Drake considered it an agenda rather than a calculation.',
-        link: 'https://www.worldcat.org/title/is-anyone-out-there/oclc/25508015',
-        access: 'Library search',
-      },
-    ]
-  },
-];
-
-function buildResourcesTab() {
-  const div = document.createElement('div');
-  div.id = 'pnl-resources';
-  div.className = 'pnl';
-
-  const accessStyle = {
-    'Free PDF': 'color:var(--text2);background:var(--bg2);',
-    'Publisher page': 'color:var(--text3);background:var(--bg2);',
-    'Library search': 'color:var(--text3);background:var(--bg2);',
-  };
-
-  const accessEmoji = {
-    'Free PDF': '↓',
-    'Publisher page': '↗',
-    'Library search': '↗',
-  };
-
-  let html = '<div style="padding-top:0.25rem">';
-
-  RESOURCES.forEach(group => {
-    html += `<div style="margin-bottom:2rem">
-      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:1rem;font-weight:600">${group.category}</div>`;
-
-    group.items.forEach(item => {
-      html += `<div style="border-bottom:0.5px solid var(--border);padding:1rem 0">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
-          <div style="flex:1;min-width:200px">
-            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px">${item.title}</div>
-            <div style="font-size:12px;color:var(--text2);margin-bottom:6px">${item.authors} &middot; <span style="font-style:italic">${item.venue}</span> &middot; ${item.year}</div>
-            <div style="font-size:12.5px;color:var(--text2);line-height:1.65;font-family:var(--serif);font-style:italic">${item.desc}</div>
-          </div>
-          <a href="${item.link}" target="_blank" rel="noopener" style="flex-shrink:0;font-size:11px;padding:4px 10px;border:0.5px solid var(--border2);border-radius:20px;text-decoration:none;white-space:nowrap;${accessStyle[item.access]}">
-            ${accessEmoji[item.access]} ${item.access}
-          </a>
-        </div>
-      </div>`;
-    });
-
-    html += '</div>';
-  });
-
-  html += '<p style="font-size:11.5px;color:var(--text3);font-style:italic;margin-top:1rem">For Sagan &amp; Shklovsky (1966), Ward &amp; Brownlee (2000), and Grinspoon (2003), most university library systems carry physical or digital copies. The Ćirković &amp; Vukotić (2008) paper is also available on ResearchGate with a free account.</p></div>';
-
-  div.innerHTML = html;
-  return div;
-}
-
-/* Add resources tab button and panel */
-const resourcesBtn = document.createElement('button');
-resourcesBtn.className = 'tb';
-resourcesBtn.textContent = 'Resources';
-resourcesBtn.onclick = () => {
-  document.querySelectorAll('.tb').forEach(x => x.classList.remove('on'));
-  document.querySelectorAll('.pnl').forEach(x => x.classList.remove('on'));
-  resourcesBtn.classList.add('on');
-  document.getElementById('pnl-resources').classList.add('on');
-};
-tabsEl.appendChild(resourcesBtn);
-panelsEl.appendChild(buildResourcesTab());
 </script>
 </body>
 </html>
