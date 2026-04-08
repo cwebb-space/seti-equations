@@ -13,9 +13,9 @@
     --bg: #ffffff;
     --bg2: #f7f6f3;
     --bg3: #ede9f7;
-    --text: #1a1a18;
-    --text2: #5a5a56;
-    --text3: #9a9a94;
+    --text: #111110;
+    --text2: #3d3d3a;
+    --text3: #747470;
     --border: rgba(0,0,0,0.1);
     --border2: rgba(0,0,0,0.18);
     --serif: 'Playfair Display', Georgia, serif;
@@ -34,7 +34,12 @@
 
   /* ── HEADER ── */
   header {
-    background: linear-gradient(135deg, #0a0015 0%, #1a0040 50%, #0d0030 100%);
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 50%, rgba(120,40,200,0.45) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 75% 30%, rgba(0,80,160,0.35) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 55% 80%, rgba(180,0,120,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 30% at 85% 70%, rgba(0,153,105,0.15) 0%, transparent 55%),
+      #0e0720;
     padding: 3.5rem 2rem 3rem;
     position: relative;
     overflow: hidden;
@@ -43,18 +48,26 @@
     content: '';
     position: absolute; inset: 0;
     background-image:
-      radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 35% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 55% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
-      radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 90% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 25% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 62% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 8% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 97% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 3% 10%, rgba(255,255,255,0.6) 0%, transparent 100%);
+      radial-gradient(2px 2px at 8% 15%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 18% 72%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2.5px 2.5px at 27% 38%, rgba(255,240,255,0.95) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(2px 2px at 42% 22%, rgba(200,200,255,0.8) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 50% 60%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 58% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 63% 45%, rgba(255,220,255,0.85) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 78%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(2.5px 2.5px at 76% 28%, rgba(220,220,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 82% 90%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 88% 50%, rgba(255,255,255,0.75) 0%, transparent 100%),
+      radial-gradient(1px 1px at 93% 18%, rgba(200,255,220,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 97% 65%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 12% 55%, rgba(255,255,255,0.55) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 45% 95%, rgba(255,240,255,0.65) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 33% 5%, rgba(200,200,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 8%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 5% 88%, rgba(255,255,255,0.7) 0%, transparent 100%);
     pointer-events: none;
   }
   .header-inner { max-width: var(--max); margin: 0 auto; position: relative; }
@@ -62,11 +75,11 @@
     font-family: var(--serif);
     font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 700;
-    color: var(--purple);
+    color: #c89fff;
     letter-spacing: -0.01em;
     margin-bottom: 1rem;
     line-height: 1.15;
-    text-shadow: 0 0 60px rgba(76,0,153,0.5), 0 0 120px rgba(76,0,153,0.2);
+    text-shadow: 0 0 40px rgba(180,120,255,0.6), 0 0 80px rgba(140,80,255,0.3);
   }
   header p {
     font-size: 0.9rem;
@@ -91,7 +104,7 @@
   .tabs::-webkit-scrollbar { display: none; }
   .tb {
     padding: 9px 15px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     font-family: var(--sans);
     border: none;
@@ -112,7 +125,7 @@
 
   /* ── FORMULA ── */
   .eq-f {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     margin: 0 0 5px;
     color: var(--purple);
@@ -120,17 +133,17 @@
     font-family: var(--serif);
     font-style: italic;
   }
-  .eq-c { font-size: 11px; color: var(--text3); margin: 0 0 0; font-style: italic; }
+  .eq-c { font-size: 13px; color: var(--text3); margin: 0 0 0; font-style: italic; }
   .eq-rule { border: none; border-top: 1.5px solid var(--purple); opacity: 0.2; margin: 12px 0 14px; }
   .eq-note {
-    font-size: 13px;
+    font-size: 14.5px;
     color: var(--text2);
-    line-height: 1.75;
+    line-height: 1.8;
     padding: 12px 16px;
     border-left: 2.5px solid var(--purple);
     margin-bottom: 1.75rem;
     font-family: var(--serif);
-    opacity: 0.9;
+    opacity: 0.95;
   }
 
   /* ── N RESULT ── */
@@ -144,13 +157,13 @@
     letter-spacing: -0.03em;
     font-family: var(--serif);
   }
-  .nd { font-size: 12px; color: var(--text2); padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.25rem; }
+  .nd { font-size: 14px; color: var(--text2); padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.25rem; }
 
   /* ── PRESETS ── */
   .ps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.75rem; }
   .pb {
-    font-size: 11px;
-    padding: 4px 12px;
+    font-size: 12.5px;
+    padding: 5px 13px;
     border: 0.5px solid var(--border2);
     border-radius: 20px;
     background: transparent;
@@ -165,25 +178,25 @@
   /* ── TERMS (sliders) ── */
   .trm { margin-bottom: 1.35rem; }
   .th2 { display: flex; align-items: baseline; gap: 9px; margin-bottom: 2px; }
-  .tsym { font-size: 15px; font-weight: 700; min-width: 44px; color: var(--purple); font-family: var(--serif); font-style: italic; }
-  .tname { font-size: 12.5px; color: var(--text2); font-weight: 500; }
-  .tdesc { font-size: 11.5px; color: var(--text3); font-style: italic; margin-bottom: 6px; line-height: 1.5; }
+  .tsym { font-size: 16px; font-weight: 700; min-width: 44px; color: var(--purple); font-family: var(--serif); font-style: italic; }
+  .tname { font-size: 14px; color: var(--text2); font-weight: 500; }
+  .tdesc { font-size: 13px; color: var(--text3); font-style: italic; margin-bottom: 6px; line-height: 1.5; }
   .trow2 { display: flex; align-items: center; gap: 8px; }
-  .tedge { font-size: 10px; color: var(--text3); min-width: 30px; }
+  .tedge { font-size: 11px; color: var(--text3); min-width: 30px; }
   .tedge.r { text-align: right; }
-  .tval { font-size: 12px; font-weight: 600; min-width: 76px; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
+  .tval { font-size: 13px; font-weight: 600; min-width: 76px; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
   input[type=range] {
     flex: 1; -webkit-appearance: none;
-    height: 4px; background: var(--bg3);
+    height: 4px; background: #d4b8f0;
     border-radius: 2px; outline: none; cursor: pointer;
   }
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none; width: 16px; height: 16px;
-    border-radius: 50%; background: var(--purple); cursor: pointer; border: none;
+    border-radius: 50%; background: var(--green); cursor: pointer; border: none;
   }
   input[type=range]::-moz-range-thumb {
     width: 16px; height: 16px;
-    border-radius: 50%; background: var(--purple); cursor: pointer; border: none;
+    border-radius: 50%; background: var(--green); cursor: pointer; border: none;
   }
 
   /* ── MACCONE / SANDBERG ── */
@@ -196,36 +209,36 @@
   .ptxt { font-size: 12px; color: var(--text2); }
 
   /* ── GUESS TAB ── */
-  .guess-intro { font-size: 13px; color: var(--text2); line-height: 1.75; padding: 12px 16px; border-left: 2.5px solid var(--green); margin-bottom: 1.75rem; font-family: var(--serif); }
-  .guess-formula { font-size: 20px; font-weight: 700; margin-bottom: 1.75rem; color: var(--purple); line-height: 1.8; font-family: var(--serif); font-style: italic; }
+  .guess-intro { font-size: 14.5px; color: var(--text2); line-height: 1.75; padding: 12px 16px; border-left: 2.5px solid var(--green); margin-bottom: 1.75rem; font-family: var(--serif); }
+  .guess-formula { font-size: 22px; font-weight: 700; margin-bottom: 1.75rem; color: var(--purple); line-height: 1.8; font-family: var(--serif); font-style: italic; }
   .guess-result-row { display: flex; align-items: baseline; gap: 14px; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.25rem; }
   .guess-n { font-size: 52px; font-weight: 300; color: var(--green); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1; font-family: var(--serif); }
-  .guess-n-label { font-size: 12px; color: var(--text2); }
+  .guess-n-label { font-size: 13px; color: var(--text2); }
   .guess-table { width: 100%; border-collapse: collapse; }
   .guess-table tr { border-bottom: 0.5px solid var(--border); }
   .guess-table tr:last-child { border-bottom: none; }
   .guess-table td { padding: 12px 0; vertical-align: top; }
-  .gt-sym { font-size: 16px; font-weight: 700; color: var(--purple); width: 50px; padding-top: 13px; font-family: var(--serif); font-style: italic; }
+  .gt-sym { font-size: 17px; font-weight: 700; color: var(--purple); width: 50px; padding-top: 13px; font-family: var(--serif); font-style: italic; }
   .gt-body { padding: 0 14px; }
-  .gt-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-  .gt-def { font-size: 12px; color: var(--text2); line-height: 1.65; font-family: var(--serif); font-style: italic; }
+  .gt-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .gt-def { font-size: 13px; color: var(--text2); line-height: 1.65; font-family: var(--serif); font-style: italic; }
   .gt-input-wrap { width: 110px; padding-top: 10px; }
   .gt-input {
-    width: 100%; padding: 6px 10px; font-size: 13px; font-family: var(--sans);
+    width: 100%; padding: 6px 10px; font-size: 14px; font-family: var(--sans);
     border: 0.5px solid var(--border2); border-radius: var(--radius);
     background: var(--bg2); color: var(--text); outline: none;
     font-variant-numeric: tabular-nums; transition: border-color 0.15s;
   }
   .gt-input:focus { border-color: var(--green); }
-  .gt-hint { font-size: 10px; color: var(--text3); margin-top: 3px; text-align: center; }
-  .guess-cta { margin-top: 1.75rem; font-size: 12.5px; color: var(--text3); font-style: italic; font-family: var(--serif); }
+  .gt-hint { font-size: 11px; color: var(--text3); margin-top: 3px; text-align: center; }
+  .guess-cta { margin-top: 1.75rem; font-size: 13.5px; color: var(--text3); font-style: italic; font-family: var(--serif); }
 
   /* ── RESOURCES ── */
-  .res-cat { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 1rem; font-weight: 700; }
+  .res-cat { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green); margin-bottom: 1rem; font-weight: 700; }
   .res-item { border-bottom: 0.5px solid var(--border); padding: 1.1rem 0; }
-  .res-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; font-family: var(--serif); }
-  .res-authors { font-size: 12px; color: var(--text2); margin-bottom: 7px; }
-  .res-desc { font-size: 12.5px; color: var(--text2); line-height: 1.7; font-family: var(--serif); font-style: italic; }
+  .res-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; font-family: var(--serif); }
+  .res-authors { font-size: 13px; color: var(--text2); margin-bottom: 7px; }
+  .res-desc { font-size: 13.5px; color: var(--text2); line-height: 1.7; font-family: var(--serif); font-style: italic; }
   .res-link {
     flex-shrink: 0; font-size: 11px; padding: 4px 11px;
     border: 0.5px solid var(--border2); border-radius: 20px;
@@ -339,7 +352,7 @@ function buildGuessTab() {
       </td>
     </tr>`).join('');
   div.innerHTML = `
-    <div class="guess-intro">Before consulting any estimate, enter your own. What do you think the Milky Way contains? There are no wrong answers — the equation was designed to make disagreement visible.</div>
+    <div class="guess-intro">Before consulting any estimate, enter your own. What do you think the Milky Way contains? There are no wrong answers — the equation was designed to make disagreement visible. N is the number of ETIs with whom we could communicate.</div>
     <div class="guess-formula">N &nbsp;=&nbsp; R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L</div>
     <div class="guess-result-row">
       <div class="guess-n" id="guess-n">?</div>
@@ -352,6 +365,25 @@ function buildGuessTab() {
 
 /* ── EXPLORER EQUATIONS ── */
 const EQS=[
+
+{id:'bracewell',label:'Bracewell 1960',
+formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L',
+cite:'Ronald Bracewell · "Communications from Superior Galactic Communities," Nature, 1960',
+note:'Published one year before Drake\'s Green Bank conference, Bracewell\'s formulation is algebraically equivalent but conceptually distinct: it envisions interstellar probes rather than radio broadcasts as the medium of contact. Bracewell reasoned that if superior communities exist, they would already have established a network of communication probes stationed near likely stellar candidates — including our own Sun. Rather than broadcasting into the void, we should be listening for a probe already in our solar system. This anticipates an entirely different SETI strategy, one that has gained renewed urgency in the age of Breakthrough Listen and interstellar object detection. The distinction between f<sub>c</sub> as "broadcasts" and f<sub>c</sub> as "probe programs" is subtle but carries very different assumptions about the economics and patience of advanced civilizations.',
+outSym:'N',outDesc:'probe-capable civilizations in the Milky Way',
+terms:[
+{id:'r',sym:'R<sub>*</sub>',name:'Star formation rate',desc:'New stars formed per year in the Milky Way',min:0.5,max:20,step:0.5,def:10,dec:1},
+{id:'fp',sym:'f<sub>p</sub>',name:'Fraction with planets',desc:'Stars hosting at least one planetary system',min:0,max:1,step:0.01,def:0.5,dec:2},
+{id:'ne',sym:'n<sub>e</sub>',name:'Habitable planets per star',desc:'Planets per system capable of supporting life',min:0,max:5,step:0.1,def:2,dec:1},
+{id:'fl',sym:'f<sub>l</sub>',name:'Life fraction',desc:'Suitable planets on which life actually arises',min:0,max:1,step:0.01,def:1,dec:2},
+{id:'fi',sym:'f<sub>i</sub>',name:'Intelligence fraction',desc:'Life-bearing worlds that develop intelligence',min:0,max:1,step:0.001,def:0.1,dec:3},
+{id:'fc',sym:'f<sub>c</sub>',name:'Probe-sending fraction',desc:'Civilizations capable of dispatching interstellar probes',min:0,max:1,step:0.001,def:0.1,dec:3},
+{id:'L',sym:'L',name:'Longevity of probe programs',desc:'Years a civilization actively maintains probe programs (log scale)',min:2,max:9,step:0.05,def:6,dec:0,log:true},
+],
+presets:[{name:'Bracewell default',v:{r:10,fp:0.5,ne:2,fl:1,fi:0.1,fc:0.1,L:6}}],
+calc:v=>v.r*v.fp*v.ne*v.fl*v.fi*v.fc*Math.pow(10,v.L)},
+
+
 {id:'drake',label:'Drake 1961',
 formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L',
 cite:'Frank Drake · Green Bank Conference, West Virginia, 1961',
@@ -373,22 +405,6 @@ presets:[
 ],
 calc:v=>v.r*v.fp*v.ne*v.fl*v.fi*v.fc*Math.pow(10,v.L)},
 
-{id:'bracewell',label:'Bracewell 1960',
-formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L',
-cite:'Ronald Bracewell · "Communications from Superior Galactic Communities," Nature, 1960',
-note:'Published one year before Drake\'s Green Bank conference, Bracewell\'s formulation is algebraically equivalent but conceptually distinct: it envisions interstellar probes rather than radio broadcasts as the medium of contact. Bracewell reasoned that if superior communities exist, they would already have established a network of communication probes stationed near likely stellar candidates — including our own Sun. Rather than broadcasting into the void, we should be listening for a probe already in our solar system. This anticipates an entirely different SETI strategy, one that has gained renewed urgency in the age of Breakthrough Listen and interstellar object detection. The distinction between f<sub>c</sub> as "broadcasts" and f<sub>c</sub> as "probe programs" is subtle but carries very different assumptions about the economics and patience of advanced civilizations.',
-outSym:'N',outDesc:'probe-capable civilizations in the Milky Way',
-terms:[
-{id:'r',sym:'R<sub>*</sub>',name:'Star formation rate',desc:'New stars formed per year in the Milky Way',min:0.5,max:20,step:0.5,def:10,dec:1},
-{id:'fp',sym:'f<sub>p</sub>',name:'Fraction with planets',desc:'Stars hosting at least one planetary system',min:0,max:1,step:0.01,def:0.5,dec:2},
-{id:'ne',sym:'n<sub>e</sub>',name:'Habitable planets per star',desc:'Planets per system capable of supporting life',min:0,max:5,step:0.1,def:2,dec:1},
-{id:'fl',sym:'f<sub>l</sub>',name:'Life fraction',desc:'Suitable planets on which life actually arises',min:0,max:1,step:0.01,def:1,dec:2},
-{id:'fi',sym:'f<sub>i</sub>',name:'Intelligence fraction',desc:'Life-bearing worlds that develop intelligence',min:0,max:1,step:0.001,def:0.1,dec:3},
-{id:'fc',sym:'f<sub>c</sub>',name:'Probe-sending fraction',desc:'Civilizations capable of dispatching interstellar probes',min:0,max:1,step:0.001,def:0.1,dec:3},
-{id:'L',sym:'L',name:'Longevity of probe programs',desc:'Years a civilization actively maintains probe programs (log scale)',min:2,max:9,step:0.05,def:6,dec:0,log:true},
-],
-presets:[{name:'Bracewell default',v:{r:10,fp:0.5,ne:2,fl:1,fi:0.1,fc:0.1,L:6}}],
-calc:v=>v.r*v.fp*v.ne*v.fl*v.fi*v.fc*Math.pow(10,v.L)},
 
 {id:'sagan',label:'Sagan 1966',
 formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L',
@@ -410,6 +426,7 @@ presets:[
 {name:'Transcendence',v:{r:10,fp:0.5,ne:2,fl:1,fi:1,fc:0.1,L:9}},
 ],
 calc:v=>v.r*v.fp*v.ne*v.fl*v.fi*v.fc*Math.pow(10,v.L)},
+
 
 {id:'meti',label:'METI variant',
 formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>d</sub> &thinsp;&middot;&thinsp; f<sub>m</sub> &thinsp;&middot;&thinsp; L',
@@ -433,25 +450,6 @@ presets:[
 ],
 calc:v=>v.r*v.fp*v.ne*v.fl*v.fi*v.fd*v.fm*Math.pow(10,v.L)},
 
-{id:'seager',label:'Seager 2013',
-formula:"N&prime; = N<sub>*</sub> &thinsp;&middot;&thinsp; F<sub>Q</sub> &thinsp;&middot;&thinsp; F<sub>HZ</sub> &thinsp;&middot;&thinsp; F<sub>o</sub> &thinsp;&middot;&thinsp; F<sub>L</sub> &thinsp;&middot;&thinsp; F<sub>S</sub>",
-cite:'Sara Seager · "Exoplanet Habitability," Science, 2013',
-note:'Seager reframed the question entirely for the era of space telescopes. Rather than asking how many civilizations communicate, she asked how many planets in a given survey might show detectable biosignature gases in their atmospheres — a question answerable, in principle, with instruments like the James Webb Space Telescope. Each term in the Seager Equation is, at least in principle, observationally tractable: astronomers can measure stellar activity, estimate habitable zone occurrence rates, and characterize atmospheric transmission spectra. This is a profound departure from Drake\'s original, where most terms were purely theoretical. The Seager Equation does not ask whether civilizations exist; it asks whether life, in any form, leaves a chemical trace legible to our telescopes. N here is not civilizations but detectable worlds.',
-outSym:"N&prime;",outDesc:'planets with detectable biosignature gases in a space telescope survey',
-terms:[
-{id:'nstar',sym:'N<sub>*</sub>',name:'Stars surveyed',desc:'Number of target stars observed in the mission',min:10,max:10000,step:10,def:100,dec:0,isN:true},
-{id:'fq',sym:'F<sub>Q</sub>',name:'Quiet star fraction',desc:'Stars sufficiently stable for life to persist across geological time',min:0,max:1,step:0.01,def:0.2,dec:2},
-{id:'fhz',sym:'F<sub>HZ</sub>',name:'Habitable zone fraction',desc:'Stars with a rocky planet in the habitable zone',min:0,max:1,step:0.01,def:0.15,dec:2},
-{id:'fo',sym:'F<sub>o</sub>',name:'Observable fraction',desc:'Planets whose atmospheres are accessible via transit spectroscopy',min:0,max:1,step:0.01,def:0.1,dec:2},
-{id:'fl2',sym:'F<sub>L</sub>',name:'Life fraction',desc:'Observable planets on which life actually exists',min:0,max:1,step:0.01,def:0.1,dec:2},
-{id:'fs',sym:'F<sub>S</sub>',name:'Biosignature fraction',desc:'Life-bearing planets with detectable biosignature gases during the survey lifetime',min:0,max:1,step:0.01,def:0.1,dec:2},
-],
-presets:[
-{name:"Seager's estimate",v:{nstar:100,fq:0.2,fhz:0.15,fo:0.1,fl2:0.1,fs:0.1}},
-{name:'JWST optimistic',v:{nstar:1000,fq:0.3,fhz:0.2,fo:0.15,fl2:0.5,fs:0.5}},
-{name:'Sterile universe',v:{nstar:1000,fq:0.3,fhz:0.2,fo:0.15,fl2:0.001,fs:0.001}},
-],
-calc:v=>v.nstar*v.fq*v.fhz*v.fo*v.fl2*v.fs},
 
 {id:'rareearth',label:'Rare Earth 2000',
 formula:'N = N<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; f<sub>pm</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>g</sub> &thinsp;&middot;&thinsp; f<sub>ji</sub> &thinsp;&middot;&thinsp; f<sub>mo</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L',
@@ -476,6 +474,7 @@ presets:[
 ],
 calc:v=>2e11*v.fp2*v.fpm*v.ne2*v.fg*v.fji*v.fmo*v.fl3*v.fi3*v.fc3*Math.pow(10,v.L3)},
 
+
 {id:'grinspoon',label:'Grinspoon 2003',
 formula:'N = R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; f<sub>w</sub> &thinsp;&middot;&thinsp; L',
 cite:'David Grinspoon · Lonely Planets: The Natural Philosophy of Alien Life, 2003',
@@ -498,6 +497,7 @@ presets:[
 ],
 calc:v=>v.r4*v.fp4*v.ne4*v.fl4*v.fi4*v.fc4*v.fw*Math.pow(10,v.L4)},
 
+
 {id:'cirkovic',label:'Ćirković 2008',
 formula:'N(t) = R<sub>*</sub>(t) &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; f<sub>t</sub> &thinsp;&middot;&thinsp; L',
 cite:'Milan Ćirković &amp; B. Vukotić · Origins of Life and Evolution of Biospheres, 2008',
@@ -519,6 +519,7 @@ presets:[
 {name:'Late universe',v:{r5:0.5,fp5:0.9,ne5:1,fl5:0.8,fi5:0.5,fc5:0.3,ft:0.8,L5:6}},
 ],
 calc:v=>v.r5*v.fp5*v.ne5*v.fl5*v.fi5*v.fc5*v.ft*Math.pow(10,v.L5)},
+
 
 {id:'maccone',label:'Maccone 2010',
 formula:'log N ~ &Nscr;(&mu;, &sigma;&sup2;) &nbsp;|&nbsp; each factor ~ Lognormal',
@@ -546,6 +547,28 @@ const lm=Math.log10(Math.max(v.r6,1e-9))+Math.log10(Math.max(v.fp6,1e-9))+Math.l
 const ts=v.sigma*Math.sqrt(7);
 return{median:Math.pow(10,lm),low:Math.pow(10,lm-ts),high:Math.pow(10,lm+ts)};
 }},
+
+
+{id:'seager',label:'Seager 2013',
+formula:"N&prime; = N<sub>*</sub> &thinsp;&middot;&thinsp; F<sub>Q</sub> &thinsp;&middot;&thinsp; F<sub>HZ</sub> &thinsp;&middot;&thinsp; F<sub>o</sub> &thinsp;&middot;&thinsp; F<sub>L</sub> &thinsp;&middot;&thinsp; F<sub>S</sub>",
+cite:'Sara Seager · "Exoplanet Habitability," Science, 2013',
+note:'Seager reframed the question entirely for the era of space telescopes. Rather than asking how many civilizations communicate, she asked how many planets in a given survey might show detectable biosignature gases in their atmospheres — a question answerable, in principle, with instruments like the James Webb Space Telescope. Each term in the Seager Equation is, at least in principle, observationally tractable: astronomers can measure stellar activity, estimate habitable zone occurrence rates, and characterize atmospheric transmission spectra. This is a profound departure from Drake\'s original, where most terms were purely theoretical. The Seager Equation does not ask whether civilizations exist; it asks whether life, in any form, leaves a chemical trace legible to our telescopes. N here is not civilizations but detectable worlds.',
+outSym:"N&prime;",outDesc:'planets with detectable biosignature gases in a space telescope survey',
+terms:[
+{id:'nstar',sym:'N<sub>*</sub>',name:'Stars surveyed',desc:'Number of target stars observed in the mission',min:10,max:10000,step:10,def:100,dec:0,isN:true},
+{id:'fq',sym:'F<sub>Q</sub>',name:'Quiet star fraction',desc:'Stars sufficiently stable for life to persist across geological time',min:0,max:1,step:0.01,def:0.2,dec:2},
+{id:'fhz',sym:'F<sub>HZ</sub>',name:'Habitable zone fraction',desc:'Stars with a rocky planet in the habitable zone',min:0,max:1,step:0.01,def:0.15,dec:2},
+{id:'fo',sym:'F<sub>o</sub>',name:'Observable fraction',desc:'Planets whose atmospheres are accessible via transit spectroscopy',min:0,max:1,step:0.01,def:0.1,dec:2},
+{id:'fl2',sym:'F<sub>L</sub>',name:'Life fraction',desc:'Observable planets on which life actually exists',min:0,max:1,step:0.01,def:0.1,dec:2},
+{id:'fs',sym:'F<sub>S</sub>',name:'Biosignature fraction',desc:'Life-bearing planets with detectable biosignature gases during the survey lifetime',min:0,max:1,step:0.01,def:0.1,dec:2},
+],
+presets:[
+{name:"Seager's estimate",v:{nstar:100,fq:0.2,fhz:0.15,fo:0.1,fl2:0.1,fs:0.1}},
+{name:'JWST optimistic',v:{nstar:1000,fq:0.3,fhz:0.2,fo:0.15,fl2:0.5,fs:0.5}},
+{name:'Sterile universe',v:{nstar:1000,fq:0.3,fhz:0.2,fo:0.15,fl2:0.001,fs:0.001}},
+],
+calc:v=>v.nstar*v.fq*v.fhz*v.fo*v.fl2*v.fs},
+
 
 {id:'sandberg',label:'Sandberg 2018',
 formula:'P(N<sub>obs</sub> &ge; 1) computed from posterior over parameter distributions',
