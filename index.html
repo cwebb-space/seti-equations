@@ -502,11 +502,194 @@ function applyPreset(eqId,pi){
 const eq=EQS.find(e=>e.id===eqId);
 Object.assign(STATE[eqId],eq.presets[pi].v);
 eq.terms.forEach(t=>{
-const s=document.querySelector('input[oninput*="\''+eqId+'\',\''+t.id+'\'"]');
+const s=document.querySelector('input[oninput*="\'"+eqId+"\',\'"+t.id+"\'"]');
 if(s){s.value=STATE[eqId][t.id];document.getElementById('tv-'+eqId+'-'+t.id).textContent=fmtTval(t,STATE[eqId][t.id]);}
 });
 document.querySelectorAll('#ps-'+eqId+' .pb').forEach((b,i)=>b.classList.toggle('on',i===pi));
 updateDisplay(eq);}
+
+/* ── RESOURCES TAB ── */
+const RESOURCES = [
+  {
+    category: 'Primary sources — open access',
+    items: [
+      {
+        authors: 'Ronald N. Bracewell',
+        title: 'Communications from Superior Galactic Communities',
+        venue: 'Nature, vol. 186, pp. 670–671',
+        year: '1960',
+        desc: 'The paper that preceded Drake\'s equation by one year, proposing interstellar probes rather than radio broadcasts as the medium of contact. Algebraically equivalent to Drake\'s formulation, but conceptually distinct.',
+        link: 'https://lweb.cfa.harvard.edu/~loeb/Bracewell1960.pdf',
+        access: 'Free PDF',
+      },
+      {
+        authors: 'Sara Seager',
+        title: 'Exoplanet Habitability',
+        venue: 'Science, vol. 340, pp. 577–581',
+        year: '2013',
+        desc: 'Reformulates the Drake question for the era of space telescopes: how many planets in a given survey might show detectable biosignature gases? Each term is observationally tractable, a major departure from Drake\'s original.',
+        link: 'http://hoffman.cm.utexas.edu/courses/Science-2013-Seager-577-81.pdf',
+        access: 'Free PDF',
+      },
+      {
+        authors: 'Anders Sandberg, Eric Drexler & Toby Ord',
+        title: 'Dissolving the Fermi Paradox',
+        venue: 'arXiv:1806.02404',
+        year: '2018',
+        desc: 'Replaces Drake\'s point estimates with log-uniform probability distributions drawn from the scientific literature. Result: a substantial probability that we are alone in the observable universe. The paradox dissolves into acknowledged ignorance.',
+        link: 'https://arxiv.org/pdf/1806.02404',
+        access: 'Free PDF',
+      },
+    ]
+  },
+  {
+    category: 'Primary sources — institutional access required',
+    items: [
+      {
+        authors: 'Frank D. Drake',
+        title: 'Project Ozma',
+        venue: 'Physics Today, vol. 14, no. 4, pp. 40–46',
+        year: '1961',
+        desc: 'Drake\'s account of the first SETI experiment and the reasoning behind it — including, implicitly, the equation he devised to structure the Green Bank conference agenda.',
+        link: 'https://pubs.aip.org/physicstoday/article-abstract/14/4/40/422237/Project-Ozma',
+        access: 'Publisher page',
+      },
+      {
+        authors: 'Milan M. Ćirković & Branislav Vukotić',
+        title: 'Astrobiological Phase Transition: Towards Resolution of Fermi\'s Paradox',
+        venue: 'Origins of Life and Evolution of Biospheres, vol. 38, pp. 535–547',
+        year: '2008',
+        desc: 'Introduces a temporal habitability factor, arguing that the Drake Equation ignores when in cosmic history civilizations arise. Star formation rates, heavy element availability, and gamma-ray burst frequencies all vary with cosmic epoch.',
+        link: 'https://link.springer.com/article/10.1007/s11084-008-9149-y',
+        access: 'Publisher page',
+      },
+    ]
+  },
+  {
+    category: 'Books',
+    items: [
+      {
+        authors: 'Carl Sagan & Iosif Shklovsky',
+        title: 'Intelligent Life in the Universe',
+        venue: 'Holden-Day',
+        year: '1966',
+        desc: 'The first rigorous treatment of the Drake Equation as a statistical object, with uncertainty ranges on every term. Sagan\'s conviction that f<sub>i</sub> ≈ 1 and his moral reading of L as a civilizational challenge shaped SETI for a generation.',
+        link: 'https://www.worldcat.org/title/intelligent-life-in-the-universe/oclc/473',
+        access: 'Library search',
+      },
+      {
+        authors: 'Peter D. Ward & Joe Brownlee',
+        title: 'Rare Earth: Why Complex Life Is Uncommon in the Universe',
+        venue: 'Springer-Copernicus',
+        year: '2000',
+        desc: 'The case for a dramatically expanded Drake Equation: galactic habitable zones, Jupiter-class guardians, stabilizing moons, and plate tectonics each become additional terms. The implicit conclusion — Earth may be unique — was widely contested.',
+        link: 'https://link.springer.com/book/10.1007/b97646',
+        access: 'Publisher page',
+      },
+      {
+        authors: 'David Grinspoon',
+        title: 'Lonely Planets: The Natural Philosophy of Alien Life',
+        venue: 'Ecco / HarperCollins',
+        year: '2003',
+        desc: 'Proposes the "wisdom fraction" f<sub>w</sub>: the probability that a civilization transitions from self-destruction to long-term sustainability. Without it, L is short by default. The equation becomes an ethical as much as a scientific proposition.',
+        link: 'https://www.worldcat.org/title/lonely-planets/oclc/51726902',
+        access: 'Library search',
+      },
+      {
+        authors: 'Claudio Maccone',
+        title: 'Mathematical SETI: Statistics, Signal Processing, Space Missions',
+        venue: 'Springer-Praxis',
+        year: '2012',
+        desc: 'Treats each Drake term as a lognormal random variable, yielding N as a probability distribution rather than a point estimate. A rigorous statistical framework that makes the equation\'s uncertainty explicit and computable.',
+        link: 'https://link.springer.com/book/10.1007/978-3-642-27437-4',
+        access: 'Publisher page',
+      },
+    ]
+  },
+  {
+    category: 'Further reading',
+    items: [
+      {
+        authors: 'Giuseppe Cocconi & Philip Morrison',
+        title: 'Searching for Interstellar Communications',
+        venue: 'Nature, vol. 184, pp. 844–846',
+        year: '1959',
+        desc: 'The paper that preceded and catalyzed everything: the first scientific proposal to search for extraterrestrial radio signals, at the 21 cm hydrogen line. Drake read this and made Project Ozma public.',
+        link: 'https://www.nature.com/articles/184844a0',
+        access: 'Publisher page',
+      },
+      {
+        authors: 'Frank Drake & Dava Sobel',
+        title: 'Is Anyone Out There? The Scientific Search for Extraterrestrial Intelligence',
+        venue: 'Delacorte Press',
+        year: '1992',
+        desc: 'Drake\'s memoir of the Green Bank conference and the equation\'s origin — the most readable account of what the equation was actually meant to do, and why Drake considered it an agenda rather than a calculation.',
+        link: 'https://www.worldcat.org/title/is-anyone-out-there/oclc/25508015',
+        access: 'Library search',
+      },
+    ]
+  },
+];
+
+function buildResourcesTab() {
+  const div = document.createElement('div');
+  div.id = 'pnl-resources';
+  div.className = 'pnl';
+
+  const accessStyle = {
+    'Free PDF': 'color:var(--text2);background:var(--bg2);',
+    'Publisher page': 'color:var(--text3);background:var(--bg2);',
+    'Library search': 'color:var(--text3);background:var(--bg2);',
+  };
+
+  const accessEmoji = {
+    'Free PDF': '↓',
+    'Publisher page': '↗',
+    'Library search': '↗',
+  };
+
+  let html = '<div style="padding-top:0.25rem">';
+
+  RESOURCES.forEach(group => {
+    html += `<div style="margin-bottom:2rem">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin-bottom:1rem;font-weight:600">${group.category}</div>`;
+
+    group.items.forEach(item => {
+      html += `<div style="border-bottom:0.5px solid var(--border);padding:1rem 0">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px">
+            <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px">${item.title}</div>
+            <div style="font-size:12px;color:var(--text2);margin-bottom:6px">${item.authors} &middot; <span style="font-style:italic">${item.venue}</span> &middot; ${item.year}</div>
+            <div style="font-size:12.5px;color:var(--text2);line-height:1.65;font-family:var(--serif);font-style:italic">${item.desc}</div>
+          </div>
+          <a href="${item.link}" target="_blank" rel="noopener" style="flex-shrink:0;font-size:11px;padding:4px 10px;border:0.5px solid var(--border2);border-radius:20px;text-decoration:none;white-space:nowrap;${accessStyle[item.access]}">
+            ${accessEmoji[item.access]} ${item.access}
+          </a>
+        </div>
+      </div>`;
+    });
+
+    html += '</div>';
+  });
+
+  html += '<p style="font-size:11.5px;color:var(--text3);font-style:italic;margin-top:1rem">For Sagan &amp; Shklovsky (1966), Ward &amp; Brownlee (2000), and Grinspoon (2003), most university library systems carry physical or digital copies. The Ćirković &amp; Vukotić (2008) paper is also available on ResearchGate with a free account.</p></div>';
+
+  div.innerHTML = html;
+  return div;
+}
+
+/* Add resources tab button and panel */
+const resourcesBtn = document.createElement('button');
+resourcesBtn.className = 'tb';
+resourcesBtn.textContent = 'Resources';
+resourcesBtn.onclick = () => {
+  document.querySelectorAll('.tb').forEach(x => x.classList.remove('on'));
+  document.querySelectorAll('.pnl').forEach(x => x.classList.remove('on'));
+  resourcesBtn.classList.add('on');
+  document.getElementById('pnl-resources').classList.add('on');
+};
+tabsEl.appendChild(resourcesBtn);
+panelsEl.appendChild(buildResourcesTab());
 </script>
 </body>
 </html>
