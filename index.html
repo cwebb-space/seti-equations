@@ -7,149 +7,66 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #ffffff;
-    --bg2: #f7f6f3;
-    --bg3: #f0ede8;
-    --text: #1a1a18;
-    --text2: #5a5a56;
-    --text3: #9a9a94;
-    --border: rgba(0,0,0,0.1);
-    --border2: rgba(0,0,0,0.2);
-    --accent: #1a1a18;
+    --bg: #ffffff; --bg2: #f7f6f3; --bg3: #f0ede8;
+    --text: #1a1a18; --text2: #5a5a56; --text3: #9a9a94;
+    --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.2);
     --serif: Georgia, 'Times New Roman', serif;
     --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     --radius: 8px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a1a18;
-      --bg2: #242420;
-      --bg3: #2e2e2a;
-      --text: #e8e6e0;
-      --text2: #a0a09a;
-      --text3: #606058;
-      --border: rgba(255,255,255,0.1);
-      --border2: rgba(255,255,255,0.2);
-      --accent: #e8e6e0;
+      --bg: #1a1a18; --bg2: #242420; --bg3: #2e2e2a;
+      --text: #e8e6e0; --text2: #a0a09a; --text3: #606058;
+      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.2);
     }
   }
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-  header {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 2rem;
-    border-bottom: 0.5px solid var(--border);
-  }
-  header h1 {
-    font-family: var(--serif);
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    font-weight: normal;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.75rem;
-    color: var(--text);
-  }
-  header p {
-    font-size: 0.9rem;
-    color: var(--text2);
-    max-width: 560px;
-    line-height: 1.7;
-  }
-  main {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 1.5rem;
-  }
-  .tabs {
-    display: flex;
-    overflow-x: auto;
-    gap: 0;
-    border-bottom: 0.5px solid var(--border);
-    margin-bottom: 1.75rem;
-    scrollbar-width: none;
-  }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+  header { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 2rem; border-bottom: 0.5px solid var(--border); }
+  header h1 { font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: normal; letter-spacing: -0.01em; margin-bottom: 0.75rem; }
+  header p { font-size: 0.9rem; color: var(--text2); max-width: 560px; line-height: 1.7; }
+  main { max-width: 780px; margin: 0 auto; padding: 1.5rem; }
+  .tabs { display: flex; overflow-x: auto; gap: 0; border-bottom: 0.5px solid var(--border); margin-bottom: 1.75rem; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
-  .tb {
-    padding: 8px 13px;
-    font-size: 11.5px;
-    border: none;
-    background: transparent;
-    color: var(--text2);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    margin-bottom: -1px;
-    flex-shrink: 0;
-    font-family: var(--sans);
-    letter-spacing: 0.01em;
-    transition: color 0.15s;
-  }
+  .tb { padding: 8px 13px; font-size: 11.5px; border: none; background: transparent; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; margin-bottom: -1px; flex-shrink: 0; font-family: var(--sans); transition: color 0.15s; }
   .tb.on { color: var(--text); font-weight: 600; border-bottom-color: var(--text); }
   .tb:hover:not(.on) { color: var(--text); background: var(--bg2); }
-  .pnl { display: none; }
-  .pnl.on { display: block; }
-  .eq-f {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0 0 4px;
-    color: var(--text);
-    line-height: 1.6;
+  .pnl { display: none; } .pnl.on { display: block; }
+
+  /* Guess tab */
+  .guess-intro { font-size: 13px; color: var(--text2); line-height: 1.7; padding: 11px 15px; border-left: 2px solid var(--border2); margin-bottom: 1.75rem; font-family: var(--serif); }
+  .guess-formula { font-size: 17px; font-weight: 600; margin-bottom: 1.75rem; color: var(--text); line-height: 1.8; letter-spacing: 0.01em; }
+  .guess-result-row { display: flex; align-items: baseline; gap: 12px; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.75rem; }
+  .guess-n { font-size: 44px; font-weight: 300; color: var(--text); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+  .guess-n-label { font-size: 12px; color: var(--text2); }
+  .guess-table { width: 100%; border-collapse: collapse; }
+  .guess-table tr { border-bottom: 0.5px solid var(--border); }
+  .guess-table tr:last-child { border-bottom: none; }
+  .guess-table td { padding: 12px 0; vertical-align: top; }
+  .gt-sym { font-size: 15px; font-weight: 600; color: var(--text); width: 48px; padding-top: 13px; }
+  .gt-body { padding: 0 12px; }
+  .gt-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .gt-def { font-size: 12px; color: var(--text2); line-height: 1.6; font-family: var(--serif); font-style: italic; }
+  .gt-input-wrap { width: 110px; padding-top: 10px; }
+  .gt-input {
+    width: 100%; padding: 6px 10px; font-size: 13px; font-family: var(--sans);
+    border: 0.5px solid var(--border2); border-radius: var(--radius);
+    background: var(--bg2); color: var(--text); outline: none;
     font-variant-numeric: tabular-nums;
   }
-  .eq-c {
-    font-size: 11px;
-    color: var(--text3);
-    margin: 0 0 12px;
-    font-style: italic;
-  }
-  .eq-note {
-    font-size: 13px;
-    color: var(--text2);
-    line-height: 1.7;
-    padding: 11px 15px;
-    border-left: 2px solid var(--border2);
-    margin-bottom: 1.75rem;
-    font-family: var(--serif);
-  }
-  .nr {
-    font-size: 44px;
-    font-weight: 300;
-    color: var(--text);
-    line-height: 1;
-    margin: 0 0 5px;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.02em;
-  }
-  .nd {
-    font-size: 12px;
-    color: var(--text2);
-    padding-bottom: 1.25rem;
-    border-bottom: 0.5px solid var(--border);
-    margin-bottom: 1.25rem;
-  }
+  .gt-input:focus { border-color: var(--text2); background: var(--bg); }
+  .gt-hint { font-size: 10px; color: var(--text3); margin-top: 3px; text-align: center; }
+  .guess-cta { margin-top: 1.75rem; font-size: 12.5px; color: var(--text3); font-style: italic; }
+
+  /* Explorer tabs */
+  .eq-f { font-size: 16px; font-weight: 600; margin: 0 0 4px; color: var(--text); line-height: 1.6; }
+  .eq-c { font-size: 11px; color: var(--text3); margin: 0 0 12px; font-style: italic; }
+  .eq-note { font-size: 13px; color: var(--text2); line-height: 1.7; padding: 11px 15px; border-left: 2px solid var(--border2); margin-bottom: 1.75rem; font-family: var(--serif); }
+  .nr { font-size: 44px; font-weight: 300; color: var(--text); line-height: 1; margin: 0 0 5px; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .nd { font-size: 12px; color: var(--text2); padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); margin-bottom: 1.25rem; }
   .ps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.75rem; }
-  .pb {
-    font-size: 11px;
-    padding: 4px 11px;
-    border: 0.5px solid var(--border2);
-    border-radius: 20px;
-    background: transparent;
-    color: var(--text2);
-    cursor: pointer;
-    font-family: var(--sans);
-    transition: all 0.12s;
-  }
-  .pb:hover, .pb.on {
-    background: var(--bg2);
-    color: var(--text);
-    font-weight: 600;
-    border-color: var(--border2);
-  }
+  .pb { font-size: 11px; padding: 4px 11px; border: 0.5px solid var(--border2); border-radius: 20px; background: transparent; color: var(--text2); cursor: pointer; font-family: var(--sans); transition: all 0.12s; }
+  .pb:hover, .pb.on { background: var(--bg2); color: var(--text); font-weight: 600; }
   .trm { margin-bottom: 1.25rem; }
   .th2 { display: flex; align-items: baseline; gap: 9px; margin-bottom: 2px; }
   .tsym { font-size: 14px; font-weight: 600; min-width: 42px; color: var(--text); }
@@ -159,30 +76,9 @@
   .tedge { font-size: 10px; color: var(--text3); min-width: 30px; }
   .tedge.r { text-align: right; }
   .tval { font-size: 12px; font-weight: 600; min-width: 76px; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
-  input[type=range] {
-    flex: 1;
-    -webkit-appearance: none;
-    height: 4px;
-    background: var(--bg3);
-    border-radius: 2px;
-    outline: none;
-    cursor: pointer;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: var(--text);
-    cursor: pointer;
-    border: none;
-  }
-  input[type=range]::-moz-range-thumb {
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: var(--text);
-    cursor: pointer;
-    border: none;
-  }
+  input[type=range] { flex: 1; -webkit-appearance: none; height: 4px; background: var(--bg3); border-radius: 2px; outline: none; cursor: pointer; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; border: none; }
+  input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--text); cursor: pointer; border: none; }
   .rng3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 4px 0 14px; }
   .rc { background: var(--bg2); border-radius: var(--radius); padding: 10px; text-align: center; }
   .rl { font-size: 10px; color: var(--text3); margin-bottom: 3px; }
@@ -190,27 +86,14 @@
   .pbar { height: 4px; background: var(--bg3); border-radius: 2px; margin: 8px 0 4px; overflow: hidden; }
   .pfill { height: 100%; border-radius: 2px; background: var(--text2); transition: width 0.15s; }
   .ptxt { font-size: 12px; color: var(--text2); }
-  footer {
-    max-width: 780px;
-    margin: 3rem auto 0;
-    padding: 1.5rem;
-    border-top: 0.5px solid var(--border);
-    font-size: 11.5px;
-    color: var(--text3);
-    line-height: 1.6;
-  }
-  footer a { color: var(--text2); }
-  @media (max-width: 500px) {
-    .nr { font-size: 34px; }
-    .rng3 { grid-template-columns: repeat(3, 1fr); }
-  }
+  footer { max-width: 780px; margin: 3rem auto 0; padding: 1.5rem; border-top: 0.5px solid var(--border); font-size: 11.5px; color: var(--text3); line-height: 1.6; }
 </style>
 </head>
 <body>
 
 <header>
   <h1>The Drake Equation &amp; Its Variants</h1>
-  <p>An interactive explorer of ten formulations — from Frank Drake's 1961 conference agenda to Bayesian reanalyses of the twenty-first century. Adjust the sliders to see how estimates of N change with your assumptions.</p>
+  <p>An interactive explorer of ten formulations — from Frank Drake's 1961 conference agenda to Bayesian reanalyses of the twenty-first century. Begin by entering your own estimates, then explore how scientists have approached each term.</p>
 </header>
 
 <main>
@@ -223,6 +106,92 @@
 </footer>
 
 <script>
+/* ── GUESS TAB ── */
+const GUESS_TERMS = [
+  { id:'r',  sym:'R<sub>*</sub>', name:'Rate of star formation',
+    def:'The average rate at which new stars are formed in our galaxy each year.',
+    hint:'stars / yr', min:0, max:50 },
+  { id:'fp', sym:'f<sub>p</sub>', name:'Fraction of stars with planets',
+    def:'The fraction of those stars that have a planetary system.',
+    hint:'0 – 1', min:0, max:1 },
+  { id:'ne', sym:'n<sub>e</sub>', name:'Habitable planets per star',
+    def:'The average number of planets per star that could potentially support life.',
+    hint:'number', min:0, max:10 },
+  { id:'fl', sym:'f<sub>l</sub>', name:'Fraction where life arises',
+    def:'The fraction of potentially life-supporting planets on which life actually appears.',
+    hint:'0 – 1', min:0, max:1 },
+  { id:'fi', sym:'f<sub>i</sub>', name:'Fraction where intelligence evolves',
+    def:'The fraction of life-bearing planets on which intelligent life emerges.',
+    hint:'0 – 1', min:0, max:1 },
+  { id:'fc', sym:'f<sub>c</sub>', name:'Fraction that develop technology',
+    def:'The fraction of civilizations that develop technology producing detectable signs of their existence.',
+    hint:'0 – 1', min:0, max:1 },
+  { id:'L',  sym:'L', name:'Longevity of a civilization',
+    def:'The length of time, in years, over which such a civilization releases detectable signals into space.',
+    hint:'years', min:0, max:1e10 },
+];
+
+const gVals = {};
+GUESS_TERMS.forEach(t => gVals[t.id] = '');
+
+function fmtGuessN(n) {
+  if (!isFinite(n) || isNaN(n) || n <= 0) return '?';
+  if (n < 0.0001) return '<0.0001';
+  if (n < 1) return n.toFixed(4);
+  if (n >= 1e12) return (n/1e12).toFixed(1)+' trillion';
+  if (n >= 1e9)  return (n/1e9).toFixed(1)+' billion';
+  if (n >= 1e6)  return (n/1e6).toFixed(1)+' million';
+  if (n >= 1000) return Math.round(n).toLocaleString();
+  return Math.round(n).toString();
+}
+
+function calcGuessN() {
+  const vals = GUESS_TERMS.map(t => parseFloat(gVals[t.id]));
+  if (vals.some(v => isNaN(v) || v === '')) return null;
+  return vals.reduce((acc, v) => acc * v, 1);
+}
+
+function updateGuessN() {
+  const n = calcGuessN();
+  document.getElementById('guess-n').textContent = n === null ? '?' : fmtGuessN(n);
+}
+
+function buildGuessTab() {
+  const div = document.createElement('div');
+  div.id = 'pnl-guess';
+  div.className = 'pnl on';
+
+  const rows = GUESS_TERMS.map(t => `
+    <tr>
+      <td class="gt-sym">${t.sym}</td>
+      <td class="gt-body">
+        <div class="gt-name">${t.name}</div>
+        <div class="gt-def">${t.def}</div>
+      </td>
+      <td class="gt-input-wrap">
+        <input class="gt-input" type="number" min="${t.min}" max="${t.max}" placeholder="?" id="gi-${t.id}"
+          oninput="gVals['${t.id}']=this.value; updateGuessN();">
+        <div class="gt-hint">${t.hint}</div>
+      </td>
+    </tr>`).join('');
+
+  div.innerHTML = `
+    <div class="guess-intro">
+      Before consulting any estimate, enter your own. What do you think the Milky Way contains?
+      There are no wrong answers — the equation was designed to make disagreement visible.
+    </div>
+    <div class="guess-formula">N &nbsp;=&nbsp; R<sub>*</sub> &thinsp;&middot;&thinsp; f<sub>p</sub> &thinsp;&middot;&thinsp; n<sub>e</sub> &thinsp;&middot;&thinsp; f<sub>l</sub> &thinsp;&middot;&thinsp; f<sub>i</sub> &thinsp;&middot;&thinsp; f<sub>c</sub> &thinsp;&middot;&thinsp; L</div>
+    <div class="guess-result-row">
+      <div class="guess-n" id="guess-n">?</div>
+      <div class="guess-n-label">communicating civilizations<br>in the Milky Way</div>
+    </div>
+    <table class="guess-table">${rows}</table>
+    <p class="guess-cta">When you have your estimate, explore the tabs above to see how scientists from 1960 to 2018 have approached each term.</p>
+  `;
+  return div;
+}
+
+/* ── EXPLORER TABS ── */
 const EQS=[
 {id:'drake',label:'Drake 1961',
 title:'The Drake Equation',
@@ -479,27 +448,39 @@ document.getElementById('sdg-desc').textContent=pct>70?'Likely alone in the Milk
 document.getElementById('nr-'+eq.id).textContent=fmtN(eq.calc(v));
 }}
 
+/* Build tabs */
 const tabsEl=document.getElementById('tabs');
-EQS.forEach((eq,i)=>{
+const panelsEl=document.getElementById('panels');
+
+/* Guess tab button */
+const guessBtn=document.createElement('button');
+guessBtn.className='tb on';guessBtn.textContent='Your estimate';
+guessBtn.onclick=()=>{
+document.querySelectorAll('.tb').forEach(x=>x.classList.remove('on'));
+document.querySelectorAll('.pnl').forEach(x=>x.classList.remove('on'));
+guessBtn.classList.add('on');document.getElementById('pnl-guess').classList.add('on');
+};
+tabsEl.appendChild(guessBtn);
+panelsEl.appendChild(buildGuessTab());
+
+/* Explorer tab buttons */
+EQS.forEach(eq=>{
 const b=document.createElement('button');
-b.className='tb'+(i===0?' on':'');b.textContent=eq.label;
+b.className='tb';b.textContent=eq.label;
 b.onclick=()=>{
 document.querySelectorAll('.tb').forEach(x=>x.classList.remove('on'));
 document.querySelectorAll('.pnl').forEach(x=>x.classList.remove('on'));
 b.classList.add('on');document.getElementById('pnl-'+eq.id).classList.add('on');
-};tabsEl.appendChild(b);});
+};tabsEl.appendChild(b);
 
-const panelsEl=document.getElementById('panels');
-EQS.forEach((eq,i)=>{
 const div=document.createElement('div');
-div.id='pnl-'+eq.id;div.className='pnl'+(i===0?' on':'');
+div.id='pnl-'+eq.id;div.className='pnl';
 
 let special='';
 if(eq.special==='maccone'){special='<div class="rng3"><div class="rc"><div class="rl">&minus;1&sigma; low</div><div class="rv" id="mcc-low">—</div></div><div class="rc"><div class="rl">median</div><div class="rv" id="mcc-med">—</div></div><div class="rc"><div class="rl">+1&sigma; high</div><div class="rv" id="mcc-hi">—</div></div></div>';}
 else if(eq.special==='sandberg'){special='<div style="margin-top:8px"><div class="pbar"><div class="pfill" id="sdg-fill" style="width:50%"></div></div><div style="display:flex;justify-content:space-between"><span class="ptxt" id="sdg-desc">—</span><span class="ptxt" style="font-weight:600" id="sdg-pct">—</span></div><div style="font-size:11px;color:var(--text3);margin-top:3px">P(alone in the Milky Way)</div></div>';}
 
 const presetsHtml=eq.presets.map((p,pi)=>'<button class="pb'+(pi===0?' on':'')+'" onclick="applyPreset(\''+eq.id+'\','+pi+')">'+p.name+'</button>').join('');
-
 const termsHtml=eq.terms.map(t=>{
 const mn=t.log?'100 yr':t.isN?'10':t.min.toString();
 const mx=t.log?'1B yr':t.isN?'10k':t.max.toString();
